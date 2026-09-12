@@ -1439,6 +1439,101 @@ section{position:relative}
 .gallery-item{min-height:180px}
 .gallery-item.is-loading{display:flex;align-items:center;justify-content:center;color:#827a70;font-size:13px}
 
+
+/* ===== Grilles 4 éléments : 2 colonnes x 2 lignes sur tous les écrans ===== */
+.essence-grid,
+.utility-grid,
+.gallery-grid,
+.stats {
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:20px;
+}
+
+/* Sur petits écrans, on conserve volontairement le format 2 x 2 */
+@media(max-width:550px){
+  .essence-grid,
+  .utility-grid,
+  .gallery-grid,
+  .stats {
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:12px;
+  }
+  .essence, .utility { padding:18px; }
+  .essence h3, .utility h3 { font-size:18px; }
+  .essence p, .utility p { font-size:13px; line-height:1.5; }
+  .essence-icon, .utility-icon { font-size:30px; }
+}
+
+/* ===== Assistant Boiséo flottant ===== */
+.boiseo-floating-assistant{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:9990;
+  width:min(310px,calc(100vw - 36px));
+  background:rgba(255,255,255,.97);
+  border:1px solid #d9d2c7;
+  border-radius:18px;
+  box-shadow:0 18px 50px rgba(20,35,27,.20);
+  padding:14px;
+  backdrop-filter:blur(10px);
+}
+.boiseo-floating-assistant__head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+.boiseo-floating-assistant__icon{
+  width:40px;
+  height:40px;
+  flex:0 0 40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#173b2a;
+  color:#fff;
+  font-size:20px;
+}
+.boiseo-floating-assistant__title{
+  font-weight:850;
+  color:#173b2a;
+  line-height:1.1;
+}
+.boiseo-floating-assistant__text{
+  margin:2px 0 0;
+  font-size:12px;
+  color:#69746d;
+}
+.boiseo-floating-assistant__button{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:44px;
+  border-radius:12px;
+  background:#173b2a;
+  color:#fff !important;
+  text-decoration:none !important;
+  font-weight:800;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.boiseo-floating-assistant__button:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(23,59,42,.22);
+  background:#24543b;
+}
+@media(max-width:550px){
+  .boiseo-floating-assistant{
+    right:12px;
+    bottom:12px;
+    width:calc(100vw - 24px);
+    padding:12px;
+  }
+}
+
 </style>
 
 </head>
@@ -2411,6 +2506,22 @@ Demander un devis
 <div class="photo-lightbox" id="photoLightbox" aria-hidden="true">
   <button class="photo-lightbox-close" id="photoLightboxClose" type="button" aria-label="Fermer l'image agrandie">×</button>
   <img id="photoLightboxImage" alt="Photo agrandie">
+</div>
+
+<!-- =====================================================
+     ASSISTANT BOISÉO FLOTTANT
+===================================================== -->
+<div class="boiseo-floating-assistant" role="complementary" aria-label="Assistant Boiséo">
+  <div class="boiseo-floating-assistant__head">
+    <div class="boiseo-floating-assistant__icon" aria-hidden="true">🤖</div>
+    <div>
+      <div class="boiseo-floating-assistant__title">Assistant Boiséo</div>
+      <p class="boiseo-floating-assistant__text">Une demande de livraison ? Écrivez-nous directement.</p>
+    </div>
+  </div>
+  <a class="boiseo-floating-assistant__button"
+     href="mailto:boiseo.eu@outlook.fr?subject=Demande%20de%20livraison%20Bois%C3%A9o&body=Bonjour%20Bois%C3%A9o%2C%0A%0AJe%20souhaite%20faire%20une%20demande%20de%20livraison.%0A%0ANom%20et%20pr%C3%A9nom%20%3A%0AVille%20%3A%0ACode%20postal%20%3A%0AAdresse%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0AMail%20%3A%0A%0AMerci."
+     aria-label="Ouvrir un email pour contacter Boiséo">✉️ Écrire à Boiséo</a>
 </div>
 
 <!-- =====================================================
