@@ -1407,6 +1407,25 @@ section{position:relative}
   .order-summary{grid-template-columns:1fr}
 }
 
+
+/* Prix en panneau dépliant */
+.price-disclosure{margin-top:26px;border:1px solid #d9d2c7;border-radius:20px;background:#fff;overflow:hidden;box-shadow:0 12px 35px rgba(30,45,35,.07)}
+.price-disclosure>summary{list-style:none;cursor:pointer;padding:20px 22px;font-weight:850;color:var(--green);display:flex;align-items:center;justify-content:space-between;gap:15px}
+.price-disclosure>summary::-webkit-details-marker{display:none}
+.price-disclosure>summary::after{content:'+';font-size:26px;line-height:1;transition:transform .2s ease}
+.price-disclosure[open]>summary::after{transform:rotate(45deg)}
+.price-disclosure .price-panel{padding:0 22px 22px;border-top:1px solid #eee8de}
+.price-disclosure .price-grid{margin-top:18px}
+.price-disclosure .price-note{margin-bottom:0}
+.order-price-disclosure{margin:4px 0 16px;border:1px solid #ded8ce;border-radius:14px;background:#f8f5ee;overflow:hidden}
+.order-price-disclosure summary{cursor:pointer;padding:13px 15px;font-weight:800;color:var(--green);list-style:none}
+.order-price-disclosure summary::-webkit-details-marker{display:none}
+.order-price-content{padding:0 15px 15px;color:var(--muted)}
+.order-price-content strong{color:var(--brown);font-size:20px}
+.gallery-item img{display:block;width:100%;height:100%;object-fit:cover}
+.gallery-item{min-height:180px}
+.gallery-item.is-loading{display:flex;align-items:center;justify-content:center;color:#827a70;font-size:13px}
+
 </style>
 
 </head>
@@ -1482,7 +1501,7 @@ Commander
 
 🔥 BOIS DE CHAUFFAGE
 •
-FRANCE & EUROPE
+FRANCE
 
 </div>
 
@@ -2106,197 +2125,32 @@ correspondant à vos besoins.
      TARIFS
 ===================================================== -->
 
-<section class="pricing"
-         id="tarifs">
-
+<section class="pricing" id="tarifs">
 <div class="container">
+  <div class="section-title">
+    <small>NOS TARIFS</small>
+    <h2>Les prix Boiséo</h2>
+    <p>Ouvrez le panneau ci-dessous pour consulter les tarifs par volume.</p>
+  </div>
 
-
-<div class="section-title">
-
-<small>
-NOS TARIFS
-</small>
-
-<h2>
-Choisissez votre quantité
-de bois.
-</h2>
-
-<p>
-
-Les tarifs ci-dessous correspondent
-aux prix affichés dans la vidéo
-Boiséo.
-
-</p>
-
+  <details class="price-disclosure">
+    <summary>Afficher les tarifs</summary>
+    <div class="price-panel">
+      <div class="price-grid">
+        <div class="price"><span class="price-name">1 stère</span><span class="price-value">40 €</span></div>
+        <div class="price"><span class="price-name">2 stères</span><span class="price-value">70 €</span></div>
+        <div class="price popular"><span class="popular">POPULAIRE</span><span class="price-name">3 stères</span><span class="price-value">120 €</span></div>
+        <div class="price"><span class="price-name">5 stères</span><span class="price-value">200 €</span></div>
+        <div class="price"><span class="price-name">10 stères</span><span class="price-value">360 €</span></div>
+        <div class="price"><span class="price-name">20 stères</span><span class="price-value">700 €</span></div>
+        <div class="price"><span class="price-name">30 stères</span><span class="price-value">1 000 €</span></div>
+        <div class="price"><span class="price-name">40 stères</span><span class="price-value">1 250 €</span></div>
+        <div class="price"><span class="price-name">60 stères</span><span class="price-value">1 600 €</span></div>
+      </div>
+      <div class="price-note"><strong>Important :</strong> les tarifs correspondent aux volumes affichés. Les conditions de livraison sont confirmées selon l'adresse, le code postal et les conditions d'accès.</div>
+    </div>
+  </details>
 </div>
-
-
-<div class="price-grid">
-
-
-<!-- 1 -->
-
-<div class="price">
-
-<span class="price-name">
-1 stère
-</span>
-
-<span class="price-value">
-40 €
-</span>
-
-</div>
-
-
-<!-- 2 -->
-
-<div class="price">
-
-<span class="price-name">
-2 stères
-</span>
-
-<span class="price-value">
-70 €
-</span>
-
-</div>
-
-
-<!-- 3 -->
-
-<div class="price popular">
-
-<span class="popular">
-POPULAIRE
-</span>
-
-<span class="price-name">
-3 stères
-</span>
-
-<span class="price-value">
-120 €
-</span>
-
-</div>
-
-
-<!-- 5 -->
-
-<div class="price">
-
-<span class="price-name">
-5 stères
-</span>
-
-<span class="price-value">
-200 €
-</span>
-
-</div>
-
-
-<!-- 10 -->
-
-<div class="price">
-
-<span class="price-name">
-10 stères
-</span>
-
-<span class="price-value">
-360 €
-</span>
-
-</div>
-
-
-<!-- 20 -->
-
-<div class="price">
-
-<span class="price-name">
-20 stères
-</span>
-
-<span class="price-value">
-700 €
-</span>
-
-</div>
-
-
-<!-- 30 -->
-
-<div class="price">
-
-<span class="price-name">
-30 stères
-</span>
-
-<span class="price-value">
-1 000 €
-</span>
-
-</div>
-
-
-<!-- 40 -->
-
-<div class="price">
-
-<span class="price-name">
-40 stères
-</span>
-
-<span class="price-value">
-1 250 €
-</span>
-
-</div>
-
-
-<!-- 60 -->
-
-<div class="price">
-
-<span class="price-name">
-60 stères
-</span>
-
-<span class="price-value">
-1 600 €
-</span>
-
-</div>
-
-
-</div>
-
-
-<div class="price-note">
-
-<strong>
-Important :
-</strong>
-
-Les prix indiqués sont les tarifs
-présentés dans la vidéo. Le prix
-final de livraison doit être confirmé
-selon le pays, le code postal,
-le volume et les conditions
-d'accès au lieu de livraison.
-
-</div>
-
-
-</div>
-
 </section>
 
 
@@ -2526,7 +2380,7 @@ Demander un devis
 <div class="section-title" style="margin-bottom:0">
 <small>GALERIE</small>
 <h2>Notre bois en images.</h2>
-<p>Les fichiers nommés <strong>bois 1</strong> à <strong>bois 20</strong> sont recherchés automatiquement à la racine du site. La galerie affiche 4 photos par page.</p>
+<p>Les photos du dépôt GitHub sont nommées <strong>bois1.jpg</strong> à <strong>bois20.jpg</strong>. Elles sont chargées depuis la racine du site et affichées 4 par 4.</p>
 </div>
 </div>
 <div id="woodGallery" class="gallery-grid"></div>
@@ -2680,267 +2534,73 @@ et la longueur des bûches.
      CONTACT / COMMANDE
 ===================================================== -->
 
-<section class="contact"
-         id="contact">
-
+<section class="contact order-form-section" id="contact">
 <div class="container">
+  <div class="order-form-wrap">
+    <div class="order-form-intro">
+      <div class="small-title">COMMANDE & LIVRAISON</div>
+      <h2>Préparez votre demande de livraison.</h2>
+      <p>Renseignez vos coordonnées et votre besoin. La demande sera préparée dans votre messagerie et envoyée à <strong>boiseo.eu@outlook.fr</strong>.</p>
+      <ul class="order-form-points">
+        <li>Livraison en France uniquement</li>
+        <li>Chêne, frêne, hêtre ou charme</li>
+        <li>33 cm ou 50 cm</li>
+        <li>Tarif calculé selon le volume choisi</li>
+      </ul>
+    </div>
 
+    <div class="order-form-card">
+      <h3>Votre demande de livraison</h3>
+      <p class="form-intro">Tous les champs de livraison importants sont regroupés ici.</p>
+      <form action="mailto:boiseo.eu@outlook.fr" method="post" enctype="text/plain">
 
-<div class="contact-grid">
+        <div class="form-row">
+          <label>Nom et prénom<input type="text" name="Nom et prénom" placeholder="Votre nom et prénom" required></label>
+          <label>Ville<input type="text" name="Ville" placeholder="Votre ville" required></label>
+        </div>
 
+        <div class="form-row">
+          <label>Code postal<input type="text" name="Code postal" placeholder="Ex. 75000" required></label>
+          <label>Téléphone<input type="tel" name="Numéro de téléphone" placeholder="Votre numéro" required></label>
+        </div>
 
-<div>
+        <label>Adresse de livraison<textarea name="Adresse" rows="3" placeholder="Numéro, rue, complément d'adresse" required></textarea></label>
+        <label>Mail<input type="email" name="Mail" placeholder="vous@exemple.fr" required></label>
 
-<div class="small-title">
-COMMANDE & DEVIS
+        <div class="form-row">
+          <label>Essence
+            <select name="Essence" id="essence" required>
+              <option value="Mélange — chêne, frêne, hêtre, charme">Mélange — chêne, frêne, hêtre, charme</option>
+              <option>Chêne</option><option>Frêne</option><option>Hêtre</option><option>Charme</option>
+            </select>
+          </label>
+          <label>Volume
+            <select name="Volume" id="volume" required>
+              <option data-price="40">1 stère</option><option data-price="70">2 stères</option><option data-price="120">3 stères</option><option data-price="200">5 stères</option><option data-price="360">10 stères</option><option data-price="700">20 stères</option><option data-price="1000">30 stères</option><option data-price="1250">40 stères</option><option data-price="1600">60 stères</option>
+            </select>
+          </label>
+        </div>
+
+        <label>Longueur des bûches
+          <select name="Longueur" id="length" required><option>33 cm</option><option>50 cm</option></select>
+        </label>
+
+        <details class="order-price-disclosure">
+          <summary>Voir le montant estimatif</summary>
+          <div class="order-price-content">
+            <div id="orderSummary">Mélange — chêne, frêne, hêtre, charme • 1 stère • 33 cm</div>
+            <strong id="orderPrice">40 €</strong>
+          </div>
+        </details>
+
+        <label>Précisions complémentaires<textarea name="Précisions" rows="4" placeholder="Accès, indications utiles pour la livraison, besoin particulier…"></textarea></label>
+
+        <button type="submit" class="button button-primary">🔥 Envoyer ma demande par email</button>
+        <p class="form-note">Le bouton ouvre votre messagerie avec un email prérempli à boiseo.eu@outlook.fr.</p>
+      </form>
+    </div>
+  </div>
 </div>
-
-<h2>
-Commandez votre bois
-avec Boiséo.
-</h2>
-
-<p class="contact-description">
-
-Vous souhaitez acheter du bois
-de chauffage pour votre maison,
-votre entreprise ou votre activité
-professionnelle ?
-
-Envoyez-nous votre demande.
-
-Nous vous répondrons avec les
-informations concernant votre
-commande et votre livraison.
-
-</p>
-
-
-<div class="contact-info">
-
-<p>
-📞 Téléphone :
-<br>
-<strong>
-+33 XX XX XX XX XX
-</strong>
-</p>
-
-<p>
-✉️ Email :
-<br>
-<strong>
-boiseo.eu@outlook.fr
-</strong>
-</p>
-
-<p>
-💬 WhatsApp :
-<br>
-<strong>
-+33 XX XX XX XX XX
-</strong>
-</p>
-
-</div>
-
-</div>
-
-
-<!-- FORMULAIRE -->
-
-<form
-action="mailto:boiseo.eu@outlook.fr"
-method="post"
-enctype="text/plain">
-
-
-<label>
-
-Nom / Prénom
-
-<input
-type="text"
-name="Nom"
-placeholder="Votre nom"
-required>
-
-</label>
-
-
-<label>
-
-Email
-
-<input
-type="email"
-name="Email"
-placeholder="vous@exemple.fr"
-required>
-
-</label>
-
-
-<label>
-
-Téléphone
-
-<input
-type="tel"
-name="Téléphone"
-placeholder="+33..."
->
-
-</label>
-
-
-<label>
-
-Pays de livraison
-
-<select name="Pays">
-
-<option>
-France
-</option>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</select>
-
-</label>
-
-
-<div class="form-row">
-
-
-<label>
-
-Code postal
-
-<input
-type="text"
-name="Code postal"
-placeholder="75000"
->
-
-</label>
-
-
-<label>
-
-Volume
-
-<select name="Volume">
-
-<option>
-1 stère
-</option>
-
-<option>
-2 stères
-</option>
-
-<option>
-3 stères
-</option>
-
-<option>
-5 stères
-</option>
-
-<option>
-10 stères
-</option>
-
-<option>
-20 stères
-</option>
-
-<option>
-30 stères
-</option>
-
-<option>
-40 stères
-</option>
-
-<option>
-60 stères
-</option>
-
-</select>
-
-</label>
-
-
-</div>
-
-
-<label>
-
-Longueur des bûches
-
-<select name="Longueur">
-
-<option>
-33 cm
-</option>
-
-<option>
-50 cm
-</option>
-
-</select>
-
-</label>
-
-
-<label>
-
-Votre message
-
-<textarea
-name="Message"
-rows="5"
-placeholder="Indiquez votre besoin, votre adresse ou toute information utile..."
-></textarea>
-
-</label>
-
-
-<button
-type="submit"
-class="button button-primary">
-
-🔥 Demander mon devis
-
-</button>
-
-
-</form>
-
-
-</div>
-
-</div>
-
 </section>
 
 
@@ -3076,11 +2736,11 @@ en France.
   }
 
   // Integrated order summary
-  const essence = document.getElementById("essenceSelect");
-  const volume = document.getElementById("volumeSelect");
-  const length = document.getElementById("lengthSelect");
-  const summary = document.getElementById("summaryText");
-  const price = document.getElementById("summaryPrice");
+  const essence = document.getElementById("essence");
+  const volume = document.getElementById("volume");
+  const length = document.getElementById("length");
+  const summary = document.getElementById("orderSummary");
+  const price = document.getElementById("orderPrice");
   function updateSummary(){
     if(!essence || !volume || !length || !summary || !price) return;
     const opt = volume.options[volume.selectedIndex];
@@ -3091,71 +2751,42 @@ en France.
   [essence,volume,length].forEach(el => el && el.addEventListener("change", updateSummary));
   updateSummary();
 
-  // Dynamic gallery: bois 1..20, extensions courantes.
-  // Browsers cannot enumerate arbitrary root-directory files, so we probe the
-  // exact requested names. If your host uses another extension, add it below.
+  // Galerie GitHub/Vercel : les fichiers sont exactement bois1.jpg ... bois20.jpg.
   const gallery = document.getElementById("woodGallery");
   const prev = document.getElementById("galleryPrev");
   const next = document.getElementById("galleryNext");
   const pageLabel = document.getElementById("galleryPage");
   if(!gallery || !prev || !next) return;
 
-  const extensions = ["jpg","jpeg","png","webp"];
-  const candidates = [];
-  for(let i=1;i<=20;i++){
-    for(const ext of extensions){
-      candidates.push({name:"bois " + i + "." + ext, url:"bois " + i + "." + ext});
-    }
-  }
-
-  const found = [];
-  let checked = 0;
-  candidates.forEach(item => {
-    const img = new Image();
-    img.onload = () => {
-      found.push(item);
-      checked++;
-      if(checked === candidates.length) render();
-    };
-    img.onerror = () => {
-      checked++;
-      if(checked === candidates.length) render();
-    };
-    img.src = encodeURI(item.url);
+  const found = Array.from({length:20}, (_,index) => {
+    const n = index + 1;
+    return { name: `bois${n}.jpg`, url: `./bois${n}.jpg`, number:n };
   });
-
   let page = 0;
   const perPage = 4;
 
   function render(){
-    found.sort((a,b)=>{
-      const na = Number(a.name.match(/bois\s+(\d+)/i)?.[1] || 0);
-      const nb = Number(b.name.match(/bois\s+(\d+)/i)?.[1] || 0);
-      return na-nb;
-    });
-    const totalPages = Math.max(1, Math.ceil(found.length/perPage));
-    page = Math.min(page,totalPages-1);
+    const totalPages = Math.ceil(found.length / perPage);
     gallery.innerHTML = "";
-    if(!found.length){
-      gallery.innerHTML = '<div class="gallery-empty" style="grid-column:1/-1">Aucune image « bois 1 » à « bois 20 » n’a été détectée à la racine. Vérifiez les noms et extensions (.jpg, .jpeg, .png ou .webp).</div>';
-    }else{
-      found.slice(page*perPage,page*perPage+perPage).forEach(item=>{
-        const fig = document.createElement("figure");
-        fig.className = "gallery-item";
-        const img = document.createElement("img");
-        img.src = encodeURI(item.url);
-        img.alt = item.name;
-        img.loading = "lazy";
-        const cap = document.createElement("figcaption");
-        cap.textContent = item.name;
-        fig.appendChild(img);
-        fig.appendChild(cap);
-        gallery.appendChild(fig);
-      });
-    }
-    pageLabel.textContent = "Page " + (page+1) + " / " + totalPages;
-    prev.disabled = page <= 0;
-    next.disabled = page >= totalPages-1;
+    found.slice(page*perPage, page*perPage+perPage).forEach(item => {
+      const fig = document.createElement("figure");
+      fig.className = "gallery-item";
+      const img = document.createElement("img");
+      img.src = item.url;
+      img.alt = `Bois de chauffage — photo ${item.number}`;
+      img.loading = "lazy";
+      img.onerror = () => {
+        fig.innerHTML = `<div style="padding:20px;text-align:center">Photo ${item.number} introuvable<br><small>${item.name}</small></div>`;
+      };
+      const cap = document.createElement("figcaption");
+      cap.textContent = `Photo ${item.number}`;
+      fig.appendChild(img);
+      fig.appendChild(cap);
+      gallery.appendChild(fig);
+    });
+    pageLabel.textContent = `Page ${page+1} / ${totalPages}`;
+    prev.disabled = page === 0;
+    next.disabled = page === totalPages-1;
   }
 
   prev.addEventListener("click",()=>{ if(page>0){page--;render();} });
