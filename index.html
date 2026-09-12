@@ -1465,75 +1465,149 @@ section{position:relative}
   .essence-icon, .utility-icon { font-size:30px; }
 }
 
-/* ===== Assistant Boiséo flottant ===== */
-.boiseo-floating-assistant{
+/* ===== Assistant + contact flottants Boiséo ===== */
+.boiseo-floating-actions{
   position:fixed;
-  right:18px;
-  bottom:18px;
-  z-index:9990;
-  width:min(310px,calc(100vw - 36px));
-  background:rgba(255,255,255,.97);
-  border:1px solid #d9d2c7;
-  border-radius:18px;
-  box-shadow:0 18px 50px rgba(20,35,27,.20);
-  padding:14px;
-  backdrop-filter:blur(10px);
+  right:22px;
+  bottom:135px;
+  z-index:10000;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:8px;
+  pointer-events:none;
+  filter:drop-shadow(0 4px 10px rgba(20,35,27,.10));
 }
-.boiseo-floating-assistant__head{
+.boiseo-floating-action{
+  pointer-events:auto;
+  width:58px;
+  height:58px;
+  padding:0;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,.92);
+  box-shadow:0 10px 28px rgba(20,35,27,.28),0 2px 8px rgba(20,35,27,.16);
+  display:grid;
+  place-items:center;
+  text-decoration:none !important;
+  color:#fff !important;
+  transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
+  position:relative;
+}
+.boiseo-floating-action:hover{
+  transform:translateY(-2px) scale(1.06);
+  box-shadow:0 14px 34px rgba(20,35,27,.34),0 3px 10px rgba(20,35,27,.16);
+  filter:brightness(1.06);
+}
+.boiseo-floating-action:focus-visible{
+  outline:3px solid rgba(255,255,255,.95);
+  outline-offset:3px;
+}
+.boiseo-floating-action__icon{
+  width:100%;
+  height:100%;
+  display:grid;
+  place-items:center;
+  font-size:27px;
+  line-height:1;
+  text-shadow:0 2px 5px rgba(0,0,0,.2);
+}
+.boiseo-floating-action--assistant{
+  background:linear-gradient(145deg,#123b29,#2f8a5b);
+  box-shadow:0 12px 30px rgba(28,92,58,.34),0 2px 8px rgba(20,35,27,.18);
+}
+.boiseo-floating-action--mail{
+  background:linear-gradient(145deg,#76501f,#c88a43);
+}
+.boiseo-floating-action--assistant .boiseo-floating-action__icon{
+  font-size:30px;
+}
+.boiseo-floating-action--assistant::after{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.24);
+  pointer-events:none;
+}
+.boiseo-floating-action--assistant .boiseo-floating-action__icon svg{
+  width:34px;height:34px;display:block;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.18));
+}
+.boiseo-floating-action--mail .boiseo-floating-action__icon svg{
+  width:28px;height:28px;display:block;
+}
+
+/* Fenêtre de l'assistant : au-dessus des deux boutons */
+.boiseo-assistant-panel{
+  position:fixed;
+  right:22px;
+  bottom:209px;
+  width:min(360px,calc(100vw - 30px));
+  max-height:min(560px,calc(100vh - 120px));
+  z-index:9999;
+  background:rgba(255,255,255,.98);
+  border:1px solid rgba(28,67,46,.14);
+  border-radius:20px;
+  box-shadow:0 20px 55px rgba(15,35,24,.24);
+  overflow:hidden;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(12px) scale(.97);
+  transform-origin:bottom right;
+  transition:opacity .2s ease,transform .2s ease,visibility .2s ease;
+  pointer-events:none;
+}
+.boiseo-assistant-panel.open{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0) scale(1);
+  pointer-events:auto;
+}
+.boiseo-assistant-head{
   display:flex;
   align-items:center;
   gap:10px;
-  margin-bottom:10px;
-}
-.boiseo-floating-assistant__icon{
-  width:40px;
-  height:40px;
-  flex:0 0 40px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:50%;
-  background:#173b2a;
+  padding:14px 16px;
+  background:linear-gradient(135deg,#173b2a,#2d6a47);
   color:#fff;
-  font-size:20px;
 }
-.boiseo-floating-assistant__title{
-  font-weight:850;
-  color:#173b2a;
-  line-height:1.1;
+.boiseo-assistant-avatar{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.3);
+  font-size:22px;
 }
-.boiseo-floating-assistant__text{
-  margin:2px 0 0;
-  font-size:12px;
-  color:#69746d;
+.boiseo-assistant-head strong{display:block;font-size:15px}
+.boiseo-assistant-head small{opacity:.85;font-size:11px}
+.boiseo-assistant-close{
+  margin-left:auto;
+  width:30px;height:30px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.13);color:#fff;cursor:pointer;font-size:20px;
 }
-.boiseo-floating-assistant__button{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  min-height:44px;
-  border-radius:12px;
-  background:#173b2a;
-  color:#fff !important;
-  text-decoration:none !important;
-  font-weight:800;
-  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+.boiseo-assistant-body{padding:14px;overflow:auto;max-height:330px}
+.boiseo-assistant-message{
+  background:#f1f6f2;border-radius:14px;padding:11px 12px;font-size:13px;line-height:1.5;color:#24342b;margin-bottom:10px;
 }
-.boiseo-floating-assistant__button:hover{
-  transform:translateY(-2px);
-  box-shadow:0 10px 24px rgba(23,59,42,.22);
-  background:#24543b;
+.boiseo-assistant-quick{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:10px}
+.boiseo-assistant-quick button{
+  border:1px solid #dce7df;background:#fff;border-radius:10px;padding:9px 7px;font-size:11px;color:#214b34;cursor:pointer;font-weight:700;
 }
+.boiseo-assistant-quick button:hover{background:#f4f8f5}
+.boiseo-assistant-form{display:flex;gap:7px;padding:10px;border-top:1px solid #edf0ee;background:#fff}
+.boiseo-assistant-form input{flex:1;min-width:0;border:1px solid #d7dfda;border-radius:12px;padding:11px 12px;font-size:13px;outline:none}
+.boiseo-assistant-form input:focus{border-color:#4a8663;box-shadow:0 0 0 3px rgba(74,134,99,.1)}
+.boiseo-assistant-form button{width:42px;border:0;border-radius:12px;background:#234e36;color:#fff;font-size:18px;cursor:pointer}
 @media(max-width:550px){
-  .boiseo-floating-assistant{
-    right:12px;
-    bottom:12px;
-    width:calc(100vw - 24px);
-    padding:12px;
-  }
+  .boiseo-floating-actions{right:12px;bottom:118px;gap:7px}
+  .boiseo-floating-action{width:52px;height:52px}
+  .boiseo-floating-action__icon{font-size:24px}
+  .boiseo-floating-action--assistant .boiseo-floating-action__icon{font-size:27px}
+  .boiseo-assistant-panel{right:12px;bottom:179px;width:calc(100vw - 24px);max-height:calc(100vh - 100px)}
 }
-
 </style>
 
 </head>
@@ -2509,19 +2583,55 @@ Demander un devis
 </div>
 
 <!-- =====================================================
-     ASSISTANT BOISÉO FLOTTANT
+     BOUTONS FLOTTANTS BOISÉO
 ===================================================== -->
-<div class="boiseo-floating-assistant" role="complementary" aria-label="Assistant Boiséo">
-  <div class="boiseo-floating-assistant__head">
-    <div class="boiseo-floating-assistant__icon" aria-hidden="true">🤖</div>
-    <div>
-      <div class="boiseo-floating-assistant__title">Assistant Boiséo</div>
-      <p class="boiseo-floating-assistant__text">Une demande de livraison ? Écrivez-nous directement.</p>
+<!-- Assistant flottant Boiséo -->
+<div class="boiseo-assistant-panel" id="boiseoAssistantPanel" aria-hidden="true">
+  <div class="boiseo-assistant-head">
+    <div class="boiseo-assistant-avatar" aria-hidden="true">🌲</div>
+    <div><strong>Assistant Boiséo</strong><small>Informations sur les bois, tarifs et livraison</small></div>
+    <button class="boiseo-assistant-close" id="boiseoAssistantClose" type="button" aria-label="Fermer l'assistant">×</button>
+  </div>
+  <div class="boiseo-assistant-body" id="boiseoAssistantBody">
+    <div class="boiseo-assistant-message">Bonjour 👋 Je peux vous renseigner sur Boiséo : essences, longueurs, volumes, tarifs, livraison en France et commande.</div>
+    <div class="boiseo-assistant-quick">
+      <button type="button" data-assistant-q="Quels bois propose Boiséo ?">Essences</button>
+      <button type="button" data-assistant-q="Quels sont les tarifs ?">Tarifs</button>
+      <button type="button" data-assistant-q="Comment se passe la livraison ?">Livraison</button>
+      <button type="button" data-assistant-q="Comment commander ?">Commander</button>
     </div>
   </div>
-  <a class="boiseo-floating-assistant__button"
+  <form class="boiseo-assistant-form" id="boiseoAssistantForm">
+    <input id="boiseoAssistantInput" type="text" autocomplete="off" placeholder="Posez votre question…" aria-label="Question à l'assistant Boiséo">
+    <button type="submit" aria-label="Envoyer la question">➤</button>
+  </form>
+</div>
+
+<div class="boiseo-floating-actions" aria-label="Actions flottantes Boiséo">
+  <button class="boiseo-floating-action boiseo-floating-action--assistant" id="boiseoAssistantToggle" type="button" aria-label="Ouvrir l'assistant Boiséo" aria-expanded="false">
+    <span class="boiseo-floating-action__icon" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 5v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="24" cy="4" r="2" fill="currentColor"/>
+        <rect x="8" y="11" width="32" height="27" rx="10" fill="white" fill-opacity=".18" stroke="white" stroke-width="2"/>
+        <circle cx="18" cy="24" r="3" fill="white"/>
+        <circle cx="30" cy="24" r="3" fill="white"/>
+        <path d="M17 31c4 3 10 3 14 0" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M8 22H5M43 22h-3" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+      </svg>
+    </span>
+  </button>
+  <a class="boiseo-floating-action boiseo-floating-action--mail"
      href="mailto:boiseo.eu@outlook.fr?subject=Demande%20de%20livraison%20Bois%C3%A9o&body=Bonjour%20Bois%C3%A9o%2C%0A%0AJe%20souhaite%20faire%20une%20demande%20de%20livraison.%0A%0ANom%20et%20pr%C3%A9nom%20%3A%0AVille%20%3A%0ACode%20postal%20%3A%0AAdresse%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0AMail%20%3A%0A%0AMerci."
-     aria-label="Ouvrir un email pour contacter Boiséo">✉️ Écrire à Boiséo</a>
+     aria-label="Écrire à Boiséo par email">
+    <span class="boiseo-floating-action__icon" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="6" y="10" width="36" height="28" rx="7" fill="white" fill-opacity=".16" stroke="white" stroke-width="2.4"/>
+        <path d="m9 14 15 12 15-12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="m9 34 11-10M39 34 28 24" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".85"/>
+      </svg>
+    </span>
+  </a>
 </div>
 
 <!-- =====================================================
@@ -2977,6 +3087,67 @@ en France.
   });
   if(closeBtn) closeBtn.addEventListener("click", closeLightbox);
   if(lightbox) lightbox.addEventListener("click", e => { if(e.target === lightbox) closeLightbox(); });
+
+  // Assistant Boiséo : informations intégrées au site.
+  const assistantToggle = document.getElementById("boiseoAssistantToggle");
+  const assistantPanel = document.getElementById("boiseoAssistantPanel");
+  const assistantClose = document.getElementById("boiseoAssistantClose");
+  const assistantBody = document.getElementById("boiseoAssistantBody");
+  const assistantForm = document.getElementById("boiseoAssistantForm");
+  const assistantInput = document.getElementById("boiseoAssistantInput");
+
+  function toggleAssistant(force){
+    if(!assistantPanel || !assistantToggle) return;
+    const open = typeof force === "boolean" ? force : !assistantPanel.classList.contains("open");
+    assistantPanel.classList.toggle("open", open);
+    assistantPanel.setAttribute("aria-hidden", String(!open));
+    assistantToggle.setAttribute("aria-expanded", String(open));
+    if(open && assistantInput) setTimeout(()=>assistantInput.focus(),100);
+  }
+  assistantToggle && assistantToggle.addEventListener("click",()=>toggleAssistant());
+  assistantClose && assistantClose.addEventListener("click",()=>toggleAssistant(false));
+
+  function assistantAnswer(q){
+    const text = (q || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+    if(/essence|chene|frene|hetre|charme|bois propose/.test(text))
+      return "Boiséo propose du chêne, du frêne, du hêtre et du charme. Vous pouvez sélectionner l’essence souhaitée directement dans le formulaire de commande.";
+    if(/tarif|prix|cout|40|70|120|200|360|700|1000|1250|1600/.test(text))
+      return "Les tarifs affichés vont de 40 € pour 1 stère à 1 600 € pour 60 stères. Ouvrez la rubrique « Tarifs » pour voir la grille complète et sélectionnez votre volume dans le formulaire pour obtenir le montant correspondant.";
+    if(/livraison|livrer|transport|adresse|ville|postal/.test(text))
+      return "Boiséo est présenté pour des livraisons en France. Pour une demande, renseignez nom et prénom, ville, code postal, adresse, téléphone et mail dans le formulaire de commande.";
+    if(/longueur|33|50|buche/.test(text))
+      return "Les longueurs disponibles indiquées sur le site sont 33 cm et 50 cm.";
+    if(/volume|stere|quantite/.test(text))
+      return "Les volumes proposés sont 1, 2, 3, 5, 10, 20, 30, 40 et 60 stères.";
+    if(/commander|commande|acheter|demande/.test(text))
+      return "Pour commander, utilisez le formulaire du site ou le bouton ✉ flottant. La demande est préparée pour être envoyée à boiseo.eu@outlook.fr.";
+    if(/contact|email|mail|outlook/.test(text))
+      return "L’adresse de contact de Boiséo est boiseo.eu@outlook.fr.";
+    return "Je peux vous renseigner sur les essences, les longueurs, les volumes, les tarifs, la livraison en France et la commande. Essayez par exemple : « Quels sont les tarifs ? »";
+  }
+  function addAssistantMessage(text, user=false){
+    if(!assistantBody) return;
+    const div=document.createElement("div");
+    div.className="boiseo-assistant-message";
+    if(user){ div.style.background="#e8f0ea"; div.style.marginLeft="22px"; }
+    div.textContent=text;
+    assistantBody.appendChild(div);
+    assistantBody.scrollTop=assistantBody.scrollHeight;
+  }
+  function askAssistant(q){
+    if(!q || !q.trim()) return;
+    addAssistantMessage(q.trim(),true);
+    setTimeout(()=>addAssistantMessage(assistantAnswer(q)),120);
+  }
+  document.querySelectorAll("[data-assistant-q]").forEach(btn=>btn.addEventListener("click",()=>askAssistant(btn.dataset.assistantQ)));
+  assistantForm && assistantForm.addEventListener("submit",e=>{
+    e.preventDefault();
+    const q=assistantInput ? assistantInput.value : "";
+    askAssistant(q);
+    if(assistantInput) assistantInput.value="";
+  });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape") toggleAssistant(false); });
+
 })();
 </script>
 
