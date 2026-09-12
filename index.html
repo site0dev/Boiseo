@@ -2329,7 +2329,7 @@ correspondant à vos besoins.
         <div class="price"><span class="price-name">40 stères</span><span class="price-value">1 250 €</span></div>
         <div class="price"><span class="price-name">60 stères</span><span class="price-value">1 600 €</span></div>
       </div>
-      <div class="price-note"><strong>Important :</strong> les tarifs correspondent aux volumes affichés. Les conditions de livraison sont confirmées selon l'adresse, le code postal et les conditions d'accès.</div>
+      <div class="price-note"><strong>Longueur 50 cm :</strong> supplément de 20 € par stère. Les montants affichés correspondent à la longueur de 33 cm.</div>
     </div>
   </details>
 </div>
@@ -2560,9 +2560,7 @@ Demander un devis
 <div class="container">
 <div class="gallery-head">
 <div class="section-title" style="margin-bottom:0">
-<small>GALERIE</small>
-<h2>Notre bois en images.</h2>
-<p>Les photos du dépôt GitHub sont chargées depuis la racine du site et présentées en grille de 4. Cliquez sur une photo pour l’agrandir.</p>
+<h2>Nos bois</h2>
 </div>
 </div>
 <div id="woodGallery" class="gallery-grid"></div>
@@ -2782,7 +2780,6 @@ votre mail et les détails de votre commande.
     <div class="order-form-intro">
       <div class="small-title">COMMANDE & LIVRAISON</div>
       <h2>Préparez votre demande de livraison.</h2>
-      <p>Renseignez vos coordonnées et votre besoin. La demande sera préparée dans votre messagerie et envoyée à <strong>boiseo.eu@outlook.fr</strong>.</p>
       <ul class="order-form-points">
         <li>Livraison en France uniquement</li>
         <li>Chêne, frêne, hêtre ou charme</li>
@@ -2826,6 +2823,7 @@ votre mail et les détails de votre commande.
         <label>Longueur des bûches
           <select name="Longueur" id="length" required><option>33 cm</option><option>50 cm</option></select>
         </label>
+        <input type="hidden" name="Montant estimatif" id="orderPriceHidden" value="40 €">
 
         <details class="order-price-disclosure">
           <summary>Voir le montant estimatif</summary>
@@ -2838,7 +2836,6 @@ votre mail et les détails de votre commande.
         <label>Précisions complémentaires<textarea name="Précisions" rows="4" placeholder="Accès, indications utiles pour la livraison, besoin particulier…"></textarea></label>
 
         <button type="submit" class="button button-primary">🔥 Envoyer ma demande par email</button>
-        <p class="form-note">Le bouton ouvre votre messagerie avec un email prérempli à boiseo.eu@outlook.fr.</p>
       </form>
     </div>
   </div>
@@ -2986,9 +2983,14 @@ en France.
   function updateSummary(){
     if(!essence || !volume || !length || !summary || !price) return;
     const opt = volume.options[volume.selectedIndex];
-    const p = Number(opt.dataset.price || 0);
+    const base = Number(opt.dataset.price || 0);
+    const quantity = Number((volume.value.match(/[0-9]+/) || [0])[0]);
+    const surcharge = length.value === "50 cm" ? quantity * 20 : 0;
+    const total = base + surcharge;
     summary.textContent = essence.value + " • " + volume.value + " • " + length.value;
-    price.textContent = p.toLocaleString("fr-FR") + " €";
+    price.textContent = total.toLocaleString("fr-FR") + " €";
+    const hidden = document.getElementById("orderPriceHidden");
+    if(hidden) hidden.value = total.toLocaleString("fr-FR") + " €";
   }
   [essence,volume,length].forEach(el => el && el.addEventListener("change", updateSummary));
   updateSummary();
@@ -3112,7 +3114,7 @@ en France.
     if(/essence|chene|frene|hetre|charme|bois propose/.test(text))
       return "Boiséo propose du chêne, du frêne, du hêtre et du charme. Vous pouvez sélectionner l’essence souhaitée directement dans le formulaire de commande.";
     if(/tarif|prix|cout|40|70|120|200|360|700|1000|1250|1600/.test(text))
-      return "Les tarifs affichés vont de 40 € pour 1 stère à 1 600 € pour 60 stères. Ouvrez la rubrique « Tarifs » pour voir la grille complète et sélectionnez votre volume dans le formulaire pour obtenir le montant correspondant.";
+      return "Les tarifs affichés vont de 40 € pour 1 stère à 1 600 € pour 60 stères en 33 cm. En 50 cm, ajoutez 20 € par stère. Ouvrez la rubrique « Tarifs » et sélectionnez votre volume et votre longueur dans le formulaire pour obtenir le montant correspondant.";
     if(/livraison|livrer|transport|adresse|ville|postal/.test(text))
       return "Boiséo est présenté pour des livraisons en France. Pour une demande, renseignez nom et prénom, ville, code postal, adresse, téléphone et mail dans le formulaire de commande.";
     if(/longueur|33|50|buche/.test(text))
