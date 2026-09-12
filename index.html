@@ -9,14 +9,14 @@
       content="width=device-width, initial-scale=1.0">
 
 <title>
-Boiséo | Bois de chauffage très sec - France & Europe
+Boiséo | Bois de chauffage très sec en France
 </title>
 
 <meta name="description"
-content="Boiséo propose du bois de chauffage très sec composé de chêne, frêne, hêtre et charme. Bûches de 33 cm et 50 cm. Vente de 1 à 60 stères et livraison en France et en Europe.">
+content="Boiséo propose du bois de chauffage très sec composé de chêne, frêne, hêtre et charme. Bûches de 33 cm et 50 cm. Vente de 1 à 60 stères et livraison en France.">
 
 <meta name="keywords"
-content="Boiséo, bois de chauffage, bois chauffage, bois sec, bois de chauffage France, bois de chauffage Europe, bûches, chêne, frêne, hêtre, charme, stère, livraison bois">
+content="Boiséo, bois de chauffage, bois chauffage, bois sec, bois de chauffage France, bois de chauffage France, bûches, chêne, frêne, hêtre, charme, stère, livraison bois">
 
 <meta name="robots"
 content="index, follow">
@@ -31,7 +31,7 @@ href="https://www.boiseo.fr/">
 content="Boiséo - Bois de chauffage très sec">
 
 <meta property="og:description"
-content="Chêne, frêne, hêtre et charme. Bûches de 33 cm et 50 cm. De 1 à 60 stères. Livraison France et Europe.">
+content="Chêne, frêne, hêtre et charme. Bûches de 33 cm et 50 cm. De 1 à 60 stères. Livraison France.">
 
 <meta property="og:type"
 content="website">
@@ -1321,6 +1321,92 @@ footer a:hover {
     }
 }
 
+
+/* ===== Boiséo — finition professionnelle v2 ===== */
+:root{
+  --green:#173b2a;
+  --green-2:#28583f;
+  --brown:#a9662c;
+  --cream:#f7f3eb;
+  --ink:#1d2c24;
+  --muted:#66736b;
+  --line:#e3ddd2;
+  --white:#fff;
+  --shadow:0 18px 50px rgba(22,39,30,.10);
+}
+body{background:#fbfaf7;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+section{position:relative}
+.button{border-radius:14px;box-shadow:0 8px 20px rgba(23,59,42,.08)}
+.button-primary{background:var(--green)}
+.button-primary:hover{background:var(--green-2)}
+.hero{overflow:hidden}
+.hero-card{box-shadow:0 28px 70px rgba(23,59,42,.20)}
+.section-title h2{font-weight:850}
+.essence,.price,.utility,.faq-item,form{box-shadow:0 8px 28px rgba(22,39,30,.045)}
+.essence{height:100%;border-color:var(--line)}
+.price{min-height:78px}
+.price-grid{align-items:stretch}
+.contact-info a{color:var(--green);text-decoration:underline;text-underline-offset:3px}
+
+/* Command form */
+.order-form-section{background:linear-gradient(180deg,#173b2a 0%,#102b1e 100%);color:#fff}
+.order-form-wrap{display:grid;grid-template-columns:.78fr 1.22fr;gap:42px;align-items:start}
+.order-form-intro{padding-top:12px}
+.order-form-intro h2{font-size:clamp(38px,5vw,62px);line-height:1.02;margin:10px 0 18px;color:#fff}
+.order-form-intro p{color:#d9e4dd;font-size:17px}
+.order-form-points{list-style:none;margin:28px 0 0;padding:0}
+.order-form-points li{margin:13px 0;color:#eef5f0;font-weight:650}
+.order-form-points li::before{content:"✓";color:#f0c68e;font-weight:900;margin-right:10px}
+.order-form-card{background:#fff;border-radius:26px;padding:30px;box-shadow:0 25px 70px rgba(0,0,0,.20);color:var(--ink)}
+.order-form-card h3{font-size:25px;color:var(--green);margin-bottom:5px}
+.order-form-card .form-intro{color:var(--muted);margin-bottom:22px}
+.order-form-card label{margin-bottom:14px}
+.order-form-card input,.order-form-card select,.order-form-card textarea{
+  background:#fcfbf8;border:1px solid #d8d2c8;border-radius:12px;padding:14px 13px;
+  outline:none;transition:border-color .2s,box-shadow .2s
+}
+.order-form-card input:focus,.order-form-card select:focus,.order-form-card textarea:focus{
+  border-color:#7d9b89;box-shadow:0 0 0 4px rgba(40,88,63,.10)
+}
+.order-summary{display:grid;grid-template-columns:1fr auto;gap:10px;margin:4px 0 18px;padding:16px 17px;border-radius:14px;background:#f1eee7;border:1px solid #e0d9cd}
+.order-summary strong{color:var(--green)}
+.order-total{font-size:21px;font-weight:900;color:var(--brown)}
+.order-form-card button{margin-top:5px}
+.form-note{font-size:12px;color:#748078;margin-top:10px;text-align:center}
+
+/* Dynamic gallery */
+.gallery-section{background:#fffdf8}
+.gallery-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:30px}
+.gallery-head p{max-width:650px;color:var(--muted)}
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.gallery-item{position:relative;overflow:hidden;border-radius:18px;background:#eee9df;aspect-ratio:4/3;border:1px solid var(--line)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+.gallery-item:hover img{transform:scale(1.045)}
+.gallery-item figcaption{position:absolute;left:10px;bottom:10px;background:rgba(16,43,30,.82);color:#fff;padding:5px 9px;border-radius:8px;font-size:12px}
+.gallery-empty{padding:34px;border:1px dashed #cfc7ba;border-radius:18px;text-align:center;color:var(--muted);background:#f8f5ee}
+.gallery-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:24px}
+.gallery-controls button{border:1px solid #d7d0c5;background:#fff;padding:10px 15px;border-radius:10px;font-weight:750;cursor:pointer}
+.gallery-controls button:disabled{opacity:.4;cursor:not-allowed}
+.gallery-page{font-size:13px;color:var(--muted);min-width:100px;text-align:center}
+
+/* Better mobile navigation */
+.mobile-menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 11px;font-size:20px;cursor:pointer}
+@media(max-width:900px){
+  .mobile-menu-toggle{display:block}
+  header nav{display:none;position:absolute;left:5%;right:5%;top:72px;background:#fff;padding:15px;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:4px}
+  header nav.open{display:flex}
+  header nav a{padding:12px 13px;border-radius:10px}
+  header nav a:hover{background:#f4f1ea}
+  .order-form-wrap{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:550px){
+  .gallery-head{display:block}
+  .gallery-grid{grid-template-columns:1fr}
+  .order-form-card{padding:20px}
+  .order-summary{grid-template-columns:1fr}
+}
+
 </style>
 
 </head>
@@ -1341,6 +1427,8 @@ footer a:hover {
 Boisé<span>o</span>
 </a>
 
+<button class="mobile-menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+
 <nav>
 
 <a href="#presentation">
@@ -1355,9 +1443,8 @@ Nos bois
 Utilité
 </a>
 
-<a href="#tarifs">
-Tarifs
-</a>
+<a href="#tarifs">Tarifs</a>
+<a href="#galerie">Galerie</a>
 
 <a href="#livraison">
 Livraison
@@ -1550,7 +1637,7 @@ Chêne, frêne, hêtre, charme
 <div class="stat">
 
 <strong>
-France + Europe
+France
 </strong>
 
 <span>
@@ -2339,7 +2426,7 @@ LIVRAISON
 </div>
 
 <h2>
-France et Europe.
+France.
 </h2>
 
 <p>
@@ -2429,6 +2516,27 @@ Demander un devis
 
 </section>
 
+
+<!-- =====================================================
+     GALERIE DYNAMIQUE
+===================================================== -->
+<section class="gallery-section" id="galerie">
+<div class="container">
+<div class="gallery-head">
+<div class="section-title" style="margin-bottom:0">
+<small>GALERIE</small>
+<h2>Notre bois en images.</h2>
+<p>Les fichiers nommés <strong>bois 1</strong> à <strong>bois 20</strong> sont recherchés automatiquement à la racine du site. La galerie affiche 4 photos par page.</p>
+</div>
+</div>
+<div id="woodGallery" class="gallery-grid"></div>
+<div class="gallery-controls">
+<button type="button" id="galleryPrev">← Précédent</button>
+<span class="gallery-page" id="galleryPage">Page 1</span>
+<button type="button" id="galleryNext">Suivant →</button>
+</div>
+</div>
+</section>
 
 <!-- =====================================================
      FAQ
@@ -2523,25 +2631,7 @@ des tarifs ci-dessus.
 </details>
 
 
-<details class="faq-item">
 
-<summary>
-Livrez-vous en Europe ?
-</summary>
-
-<p>
-
-Boiséo prévoit des livraisons
-selon la destination.
-
-Contactez-nous avec votre
-pays et votre code postal afin
-de connaître les conditions
-de livraison applicables.
-
-</p>
-
-</details>
 
 
 <details class="faq-item">
@@ -2640,7 +2730,7 @@ commande et votre livraison.
 ✉️ Email :
 <br>
 <strong>
-contact@boiseo.fr
+boiseo.eu@outlook.fr
 </strong>
 </p>
 
@@ -2660,7 +2750,7 @@ contact@boiseo.fr
 <!-- FORMULAIRE -->
 
 <form
-action="mailto:contact@boiseo.fr"
+action="mailto:boiseo.eu@outlook.fr"
 method="post"
 enctype="text/plain">
 
@@ -2714,41 +2804,23 @@ Pays de livraison
 France
 </option>
 
-<option>
-Belgique
-</option>
 
-<option>
-Luxembourg
-</option>
 
-<option>
-Allemagne
-</option>
 
-<option>
-Pays-Bas
-</option>
 
-<option>
-Espagne
-</option>
 
-<option>
-Italie
-</option>
 
-<option>
-Autriche
-</option>
 
-<option>
-Suisse
-</option>
 
-<option>
-Autre pays européen
-</option>
+
+
+
+
+
+
+
+
+
 
 </select>
 
@@ -2906,7 +2978,7 @@ Chêne • Frêne • Hêtre • Charme
 
 <br>
 
-France & Europe
+France
 
 </p>
 
@@ -2974,7 +3046,7 @@ Tous droits réservés.
 <br><br>
 
 Boiséo - Vente de bois de chauffage
-en France et en Europe.
+en France.
 
 </div>
 
@@ -2983,6 +3055,114 @@ en France et en Europe.
 
 </footer>
 
+
+
+<script>
+(function(){
+  const email = "boiseo.eu@outlook.fr";
+
+  // Mobile menu
+  const toggle = document.querySelector(".mobile-menu-toggle");
+  const nav = document.querySelector("header nav");
+  if(toggle && nav){
+    toggle.addEventListener("click", function(){
+      const open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", String(open));
+    });
+    nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded","false");
+    }));
+  }
+
+  // Integrated order summary
+  const essence = document.getElementById("essenceSelect");
+  const volume = document.getElementById("volumeSelect");
+  const length = document.getElementById("lengthSelect");
+  const summary = document.getElementById("summaryText");
+  const price = document.getElementById("summaryPrice");
+  function updateSummary(){
+    if(!essence || !volume || !length || !summary || !price) return;
+    const opt = volume.options[volume.selectedIndex];
+    const p = Number(opt.dataset.price || 0);
+    summary.textContent = essence.value + " • " + volume.value + " • " + length.value;
+    price.textContent = p.toLocaleString("fr-FR") + " €";
+  }
+  [essence,volume,length].forEach(el => el && el.addEventListener("change", updateSummary));
+  updateSummary();
+
+  // Dynamic gallery: bois 1..20, extensions courantes.
+  // Browsers cannot enumerate arbitrary root-directory files, so we probe the
+  // exact requested names. If your host uses another extension, add it below.
+  const gallery = document.getElementById("woodGallery");
+  const prev = document.getElementById("galleryPrev");
+  const next = document.getElementById("galleryNext");
+  const pageLabel = document.getElementById("galleryPage");
+  if(!gallery || !prev || !next) return;
+
+  const extensions = ["jpg","jpeg","png","webp"];
+  const candidates = [];
+  for(let i=1;i<=20;i++){
+    for(const ext of extensions){
+      candidates.push({name:"bois " + i + "." + ext, url:"bois " + i + "." + ext});
+    }
+  }
+
+  const found = [];
+  let checked = 0;
+  candidates.forEach(item => {
+    const img = new Image();
+    img.onload = () => {
+      found.push(item);
+      checked++;
+      if(checked === candidates.length) render();
+    };
+    img.onerror = () => {
+      checked++;
+      if(checked === candidates.length) render();
+    };
+    img.src = encodeURI(item.url);
+  });
+
+  let page = 0;
+  const perPage = 4;
+
+  function render(){
+    found.sort((a,b)=>{
+      const na = Number(a.name.match(/bois\s+(\d+)/i)?.[1] || 0);
+      const nb = Number(b.name.match(/bois\s+(\d+)/i)?.[1] || 0);
+      return na-nb;
+    });
+    const totalPages = Math.max(1, Math.ceil(found.length/perPage));
+    page = Math.min(page,totalPages-1);
+    gallery.innerHTML = "";
+    if(!found.length){
+      gallery.innerHTML = '<div class="gallery-empty" style="grid-column:1/-1">Aucune image « bois 1 » à « bois 20 » n’a été détectée à la racine. Vérifiez les noms et extensions (.jpg, .jpeg, .png ou .webp).</div>';
+    }else{
+      found.slice(page*perPage,page*perPage+perPage).forEach(item=>{
+        const fig = document.createElement("figure");
+        fig.className = "gallery-item";
+        const img = document.createElement("img");
+        img.src = encodeURI(item.url);
+        img.alt = item.name;
+        img.loading = "lazy";
+        const cap = document.createElement("figcaption");
+        cap.textContent = item.name;
+        fig.appendChild(img);
+        fig.appendChild(cap);
+        gallery.appendChild(fig);
+      });
+    }
+    pageLabel.textContent = "Page " + (page+1) + " / " + totalPages;
+    prev.disabled = page <= 0;
+    next.disabled = page >= totalPages-1;
+  }
+
+  prev.addEventListener("click",()=>{ if(page>0){page--;render();} });
+  next.addEventListener("click",()=>{ page++;render(); });
+  render();
+})();
+</script>
 
 </body>
 
