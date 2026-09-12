@@ -21,6 +21,10 @@ content="Boiséo, bois de chauffage, bois chauffage, bois sec, bois de chauffage
 <meta name="robots"
 content="index, follow">
 
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="X-Content-Type-Options" content="nosniff">
+<meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+
 <meta name="author"
 content="Boiséo">
 
@@ -2478,40 +2482,9 @@ adresse et le volume souhaité.
 
 
 <ul>
-
-<li>
-France métropolitaine
-</li>
-
-<li>
-Belgique
-</li>
-
-<li>
-Luxembourg
-</li>
-
-<li>
-Allemagne
-</li>
-
-<li>
-Pays-Bas
-</li>
-
-<li>
-Espagne
-</li>
-
-<li>
-Italie
-</li>
-
-<li>
-Autres destinations européennes
-sur demande
-</li>
-
+<li>Livraison partout en France</li>
+<li>Adresse de livraison renseignée dans le formulaire</li>
+<li>Tarif calculé selon le volume et la longueur des bûches</li>
 </ul>
 
 </div>
@@ -2791,20 +2764,21 @@ votre mail et les détails de votre commande.
     <div class="order-form-card">
       <h3>Votre demande de livraison</h3>
       <p class="form-intro">Tous les champs de livraison importants sont regroupés ici.</p>
-      <form action="mailto:boiseo.eu@outlook.fr" method="post" enctype="text/plain">
+      <form id="boiseoOrderForm" novalidate>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
 
         <div class="form-row">
-          <label>Nom et prénom<input type="text" name="Nom et prénom" placeholder="Votre nom et prénom" required></label>
-          <label>Ville<input type="text" name="Ville" placeholder="Votre ville" required></label>
+          <label>Nom et prénom<input type="text" name="Nom et prénom" placeholder="Votre nom et prénom" minlength="2" maxlength="80" autocomplete="name" required></label>
+          <label>Ville<input type="text" name="Ville" placeholder="Votre ville" minlength="2" maxlength="80" autocomplete="address-level2" required></label>
         </div>
 
         <div class="form-row">
-          <label>Code postal<input type="text" name="Code postal" placeholder="Ex. 75000" required></label>
-          <label>Téléphone<input type="tel" name="Numéro de téléphone" placeholder="Votre numéro" required></label>
+          <label>Code postal<input type="text" name="Code postal" placeholder="Ex. 75000" inputmode="numeric" pattern="[0-9]{5}" minlength="5" maxlength="5" autocomplete="postal-code" required></label>
+          <label>Téléphone<input type="tel" name="Numéro de téléphone" placeholder="Votre numéro" inputmode="tel" minlength="10" maxlength="20" autocomplete="tel" required></label>
         </div>
 
-        <label>Adresse de livraison<textarea name="Adresse" rows="3" placeholder="Numéro, rue, complément d'adresse" required></textarea></label>
-        <label>Mail<input type="email" name="Mail" placeholder="vous@exemple.fr" required></label>
+        <label>Adresse de livraison<textarea name="Adresse" rows="3" minlength="5" maxlength="250" autocomplete="street-address" placeholder="Numéro, rue, complément d'adresse" required></textarea></label>
+        <label>Mail<input type="email" name="Mail" placeholder="vous@exemple.fr" maxlength="160" autocomplete="email" required></label>
 
         <div class="form-row">
           <label>Essence
@@ -2833,7 +2807,7 @@ votre mail et les détails de votre commande.
           </div>
         </details>
 
-        <label>Précisions complémentaires<textarea name="Précisions" rows="4" placeholder="Accès, indications utiles pour la livraison, besoin particulier…"></textarea></label>
+        <label>Précisions complémentaires<textarea name="Précisions" rows="4" maxlength="1000" placeholder="Accès, indications utiles pour la livraison, besoin particulier…"></textarea></label>
 
         <button type="submit" class="button button-primary">🔥 Envoyer ma demande par email</button>
       </form>
@@ -2972,6 +2946,28 @@ en France.
       nav.classList.remove("open");
       toggle.setAttribute("aria-expanded","false");
     }));
+  }
+
+  // Validation et envoi sécurisé côté navigateur : aucune donnée n'est injectée directement dans l'URL.
+  const orderForm = document.getElementById("boiseoOrderForm");
+  if(orderForm){
+    orderForm.addEventListener("submit", function(e){
+      e.preventDefault();
+      const honeypot = orderForm.elements.website;
+      if(honeypot && honeypot.value.trim()) return;
+      if(!orderForm.checkValidity()){
+        orderForm.reportValidity();
+        return;
+      }
+      const data = new FormData(orderForm);
+      const lines = [];
+      for(const [key,value] of data.entries()){
+        if(key !== "website") lines.push(key + " : " + String(value).trim());
+      }
+      const subject = "Demande de livraison Boiséo";
+      const mailto = "mailto:" + email + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n"));
+      window.location.href = mailto;
+    });
   }
 
   // Résumé de commande
