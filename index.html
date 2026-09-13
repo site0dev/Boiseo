@@ -1675,6 +1675,79 @@ section{position:relative}
   .boiseo-floating-action--assistant .boiseo-floating-action__icon{font-size:27px}
   .boiseo-assistant-panel{right:calc(12px + 0.5cm);bottom:179px;width:calc(100vw - 24px);max-height:calc(100vh - 100px)}
 }
+
+/* ===== Correction affichage plein écran mobile ===== */
+html,
+body {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+header,
+footer,
+section {
+  width: 100%;
+  max-width: none;
+}
+
+.header-container,
+.container,
+.hero-grid {
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  html,
+  body {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  header,
+  footer,
+  section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .header-container,
+  .container,
+  .hero-grid {
+    width: calc(100% - 32px);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero {
+    width: 100%;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .hero-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .boiseo-assistant-panel {
+    max-width: calc(100vw - 24px);
+  }
+}
+
 </style>
 
 </head>
