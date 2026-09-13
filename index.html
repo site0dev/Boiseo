@@ -19,7 +19,7 @@ content="Boiséo propose du bois de chauffage très sec composé de chêne, frê
 content="Boiséo, bois de chauffage, bois chauffage, bois sec, bois de chauffage France, bois de chauffage France, bûches, chêne, frêne, hêtre, charme, stère, livraison bois">
 
 <meta name="robots"
-content="index, follow">
+content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -28,8 +28,10 @@ content="index, follow">
 <meta name="author"
 content="Boiséo">
 
+<link rel="sitemap" type="application/xml" href="https://www.boiseo.online/sitemap.xml">
+
 <link rel="canonical"
-href="https://www.boiseo.fr/">
+href="https://www.boiseo.online/">
 
 <meta property="og:title"
 content="Boiséo - Bois de chauffage très sec">
@@ -41,7 +43,7 @@ content="Chêne, frêne, hêtre et charme. Bûches de 33 cm et 50 cm. De 1 à 60
 content="website">
 
 <meta property="og:url"
-content="https://www.boiseo.fr/">
+content="https://www.boiseo.online/">
 
 <style>
 
@@ -2593,7 +2595,7 @@ Demander un devis
     </span>
   </button>
   <a class="boiseo-floating-action boiseo-floating-action--mail"
-     href="mailto:boiseo.eu@outlook.fr?subject=Demande%20de%20livraison%20Bois%C3%A9o&body=Bonjour%20Bois%C3%A9o%2C%0A%0AJe%20souhaite%20faire%20une%20demande%20de%20livraison.%0A%0ANom%20et%20pr%C3%A9nom%20%3A%0AVille%20%3A%0ACode%20postal%20%3A%0AAdresse%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0AMail%20%3A%0A%0AMerci."
+     href="mailto:contact@boiseo.online?subject=Demande%20de%20livraison%20Bois%C3%A9o&body=Bonjour%20Bois%C3%A9o%2C%0A%0AJe%20souhaite%20faire%20une%20demande%20de%20livraison.%0A%0ANom%20et%20pr%C3%A9nom%20%3A%0AVille%20%3A%0ACode%20postal%20%3A%0AAdresse%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0AMail%20%3A%0A%0AMerci."
      aria-label="Écrire à Boiséo par email">
     <span class="boiseo-floating-action__icon" aria-hidden="true">
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2932,7 +2934,7 @@ en France.
 
 <script>
 (function(){
-  const email = "boiseo.eu@outlook.fr";
+  const email = "contact@boiseo.online";
 
   // Menu mobile
   const toggle = document.querySelector(".mobile-menu-toggle");
@@ -3118,9 +3120,9 @@ en France.
     if(/volume|stere|quantite/.test(text))
       return "Les volumes proposés sont 1, 2, 3, 5, 10, 20, 30, 40 et 60 stères.";
     if(/commander|commande|acheter|demande/.test(text))
-      return "Pour commander, utilisez le formulaire du site ou le bouton ✉ flottant. La demande est préparée pour être envoyée à boiseo.eu@outlook.fr.";
+      return "Pour commander, utilisez le formulaire du site ou le bouton ✉ flottant. La demande est préparée pour être envoyée à contact@boiseo.online.";
     if(/contact|email|mail|outlook/.test(text))
-      return "L’adresse de contact de Boiséo est boiseo.eu@outlook.fr.";
+      return "L’adresse de contact de Boiséo est contact@boiseo.online.";
     return "Je peux vous renseigner sur les essences, les longueurs, les volumes, les tarifs, la livraison en France et la commande. Essayez par exemple : « Quels sont les tarifs ? »";
   }
   function addAssistantMessage(text, user=false){
