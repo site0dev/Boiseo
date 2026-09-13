@@ -13,13 +13,13 @@ Boiséo | Bois de chauffage très sec en France
 </title>
 
 <meta name="description"
-content="Boiséo propose du bois de chauffage très sec composé de chêne, frêne, hêtre et charme. Bûches de 33 cm et 50 cm. Vente de 1 à 60 stères et livraison en France.">
+content="Boiséo propose en France du bois de chauffage sec en chêne, frêne, hêtre et charme. Bûches de 33 cm ou 50 cm, de 1 à 60 stères, conseils d'achat, stockage, humidité et livraison à domicile.">
 
 <meta name="keywords"
-content="Boiséo, bois de chauffage, bois chauffage, bois sec, bois de chauffage France, bois de chauffage France, bûches, chêne, frêne, hêtre, charme, stère, livraison bois">
+content="Boiséo, bois de chauffage France, bois de chauffage sec, stère de bois, chêne, hêtre, charme, frêne, bûches 33 cm, bûches 50 cm, livraison bois de chauffage, stockage du bois, humidité du bois, quantité bois hiver">
 
 <meta name="robots"
-content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+content="index, follow">
 
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
@@ -28,22 +28,20 @@ content="index, follow, max-image-preview:large, max-snippet:-1, max-video-previ
 <meta name="author"
 content="Boiséo">
 
-<link rel="sitemap" type="application/xml" href="https://www.boiseo.online/sitemap.xml">
-
 <link rel="canonical"
-href="https://www.boiseo.online/">
+href="https://www.boiseo.fr/">
 
 <meta property="og:title"
 content="Boiséo - Bois de chauffage très sec">
 
 <meta property="og:description"
-content="Chêne, frêne, hêtre et charme. Bûches de 33 cm et 50 cm. De 1 à 60 stères. Livraison France.">
+content="Bois de chauffage sec en France : chêne, frêne, hêtre et charme, bûches 33 ou 50 cm, de 1 à 60 stères, conseils et livraison à domicile.">
 
 <meta property="og:type"
 content="website">
 
 <meta property="og:url"
-content="https://www.boiseo.online/">
+content="https://www.boiseo.fr/">
 
 <style>
 
@@ -939,6 +937,69 @@ section {
 
 
 /* =====================================================
+   GUIDES & CONSEILS
+===================================================== */
+
+.guides {
+    background: #faf9f5;
+}
+
+.guide-intro {
+    max-width: 820px;
+    margin: 0 auto 30px;
+    text-align: center;
+    color: #626e67;
+}
+
+.guide-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.guide-card {
+    background: #fff;
+    border: 1px solid #e0dbd1;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 28px rgba(22,39,30,.045);
+}
+
+.guide-card h3 {
+    color: #173b2a;
+    margin-bottom: 10px;
+    font-size: 21px;
+}
+
+.guide-card p {
+    color: #626e67;
+    margin-bottom: 14px;
+}
+
+.guide-card a {
+    color: #173b2a;
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.guide-note {
+    margin-top: 24px;
+    padding: 18px 20px;
+    border-left: 4px solid #173b2a;
+    border-radius: 12px;
+    background: #f0eee7;
+    color: #4d5b53;
+}
+
+@media (max-width: 700px) {
+    .guide-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* =====================================================
    FAQ
 ===================================================== */
 
@@ -1474,7 +1535,7 @@ section{position:relative}
 /* ===== Assistant + contact flottants Boiséo ===== */
 .boiseo-floating-actions{
   position:fixed;
-  right:50px;
+  right:22px;
   bottom:135px;
   z-index:10000;
   display:flex;
@@ -1546,7 +1607,7 @@ section{position:relative}
 /* Fenêtre de l'assistant : au-dessus des deux boutons */
 .boiseo-assistant-panel{
   position:fixed;
-  right:50px;
+  right:22px;
   bottom:209px;
   width:min(360px,calc(100vw - 30px));
   max-height:min(560px,calc(100vh - 120px));
@@ -1608,11 +1669,11 @@ section{position:relative}
 .boiseo-assistant-form input:focus{border-color:#4a8663;box-shadow:0 0 0 3px rgba(74,134,99,.1)}
 .boiseo-assistant-form button{width:42px;border:0;border-radius:12px;background:#234e36;color:#fff;font-size:18px;cursor:pointer}
 @media(max-width:550px){
-  .boiseo-floating-actions{right:40px;bottom:118px;gap:7px}
+  .boiseo-floating-actions{right:12px;bottom:118px;gap:7px}
   .boiseo-floating-action{width:52px;height:52px}
   .boiseo-floating-action__icon{font-size:24px}
   .boiseo-floating-action--assistant .boiseo-floating-action__icon{font-size:27px}
-  .boiseo-assistant-panel{right:40px;bottom:179px;width:calc(100vw - 24px);max-height:calc(100vh - 100px)}
+  .boiseo-assistant-panel{right:12px;bottom:179px;width:calc(100vw - 24px);max-height:calc(100vh - 100px)}
 }
 </style>
 
@@ -1652,6 +1713,7 @@ Utilité
 
 <a href="#tarifs">Tarifs</a>
 <a href="#galerie">Galerie</a>
+<a href="#conseils">Conseils</a>
 
 <a href="#livraison">
 Livraison
@@ -1659,6 +1721,10 @@ Livraison
 
 <a href="#faq">
 FAQ
+</a>
+
+<a href="#conseils">
+Conseils
 </a>
 
 <a href="#contact"
@@ -2584,15 +2650,18 @@ Demander un devis
   <button class="boiseo-floating-action boiseo-floating-action--assistant" id="boiseoAssistantToggle" type="button" aria-label="Ouvrir l'assistant Boiséo" aria-expanded="false">
     <span class="boiseo-floating-action__icon" aria-hidden="true">
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7 11.5A5.5 5.5 0 0 1 12.5 6h18A5.5 5.5 0 0 1 36 11.5v12A5.5 5.5 0 0 1 30.5 29H19l-8.5 7v-7h-1A5.5 5.5 0 0 1 4 23.5v-12A5.5 5.5 0 0 1 7 11.5Z" fill="white" fill-opacity=".18" stroke="white" stroke-width="2.2" stroke-linejoin="round"/>
-        <path d="M14 17h15M14 22h10" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M38.5 27v9M34 31.5h9" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="m39 19 1.4 3.1L43.5 24l-3.1 1.4L39 28.5l-1.4-3.1-3.1-1.4 3.1-1.9L39 19Z" fill="white"/>
+        <path d="M24 5v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="24" cy="4" r="2" fill="currentColor"/>
+        <rect x="8" y="11" width="32" height="27" rx="10" fill="white" fill-opacity=".18" stroke="white" stroke-width="2"/>
+        <circle cx="18" cy="24" r="3" fill="white"/>
+        <circle cx="30" cy="24" r="3" fill="white"/>
+        <path d="M17 31c4 3 10 3 14 0" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M8 22H5M43 22h-3" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".8"/>
       </svg>
     </span>
   </button>
   <a class="boiseo-floating-action boiseo-floating-action--mail"
-     href="mailto:contact@boiseo.online?subject=Demande%20de%20livraison%20Bois%C3%A9o&body=Bonjour%20Bois%C3%A9o%2C%0A%0AJe%20souhaite%20faire%20une%20demande%20de%20livraison.%0A%0ANom%20et%20pr%C3%A9nom%20%3A%0AVille%20%3A%0ACode%20postal%20%3A%0AAdresse%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0AMail%20%3A%0A%0AMerci."
+     href="mailto:boiseo.eu@outlook.fr?subject=Demande%20de%20livraison%20Bois%C3%A9o&body=Bonjour%20Bois%C3%A9o%2C%0A%0AJe%20souhaite%20faire%20une%20demande%20de%20livraison.%0A%0ANom%20et%20pr%C3%A9nom%20%3A%0AVille%20%3A%0ACode%20postal%20%3A%0AAdresse%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0AMail%20%3A%0A%0AMerci."
      aria-label="Écrire à Boiséo par email">
     <span class="boiseo-floating-action__icon" aria-hidden="true">
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2603,6 +2672,82 @@ Demander un devis
     </span>
   </a>
 </div>
+
+<!-- =====================================================
+     GUIDES & CONSEILS
+===================================================== -->
+
+<section class="guides" id="conseils">
+<div class="container">
+
+<div class="section-title">
+<small>CONSEILS BOIS DE CHAUFFAGE</small>
+<h2>Bien choisir, commander et conserver votre bois.</h2>
+</div>
+
+<p class="guide-intro">
+Boiséo vous aide aussi à mieux comprendre votre commande : quantité nécessaire pour l'hiver, essence, humidité, longueur des bûches, stockage et livraison. Ces repères complètent les informations de nos tarifs et de notre formulaire de commande.
+</p>
+
+<div class="guide-grid">
+
+<article class="guide-card">
+<h3>Combien de stères pour l'hiver ?</h3>
+<p>La quantité dépend notamment de la surface, de l'isolation, de la région, des températures et de l'utilisation du poêle, de l'insert ou de la cheminée. Votre consommation de l'année précédente reste souvent le meilleur point de départ.</p>
+<a href="https://monbois.net/conseils/combien-steres-bois-pour-hiver" target="_blank" rel="noopener noreferrer">Voir le guide complet sur MonBois.net</a>
+</article>
+
+<article class="guide-card">
+<h3>Comprendre le stère et les dimensions</h3>
+<p>Un stère ne correspond pas toujours au même volume apparent après recoupe. À titre indicatif, le volume apparent diminue lorsque les bûches passent de 1 m à 50, 33 ou 25 cm. Chez Boiséo, les longueurs proposées sont 33 cm et 50 cm.</p>
+<a href="https://monbois.net/stere-de-bois" target="_blank" rel="noopener noreferrer">Comprendre le stère sur MonBois.net</a>
+</article>
+
+<article class="guide-card">
+<h3>Quelle essence choisir ?</h3>
+<p>Chêne, hêtre, charme et frêne sont des feuillus denses appréciés pour le chauffage. Le choix ne dépend toutefois pas uniquement de l'essence : le séchage, les dimensions et l'appareil utilisé comptent également.</p>
+<a href="https://monbois.net/essences-bois-de-chauffage" target="_blank" rel="noopener noreferrer">Comparer les essences sur MonBois.net</a>
+</article>
+
+<article class="guide-card">
+<h3>Vérifier que le bois est suffisamment sec</h3>
+<p>Pour une bonne combustion, on recherche généralement un taux d'humidité inférieur à 20 %. Une mesure au cœur d'une bûche fendue avec un humidimètre est plus pertinente qu'une simple observation de la surface.</p>
+<a href="https://monbois.net/conseils/bois-de-chauffage-sec-verifier-livraison" target="_blank" rel="noopener noreferrer">Lire le guide sur le bois sec</a>
+</article>
+
+<article class="guide-card">
+<h3>Préparer le stockage avant la livraison</h3>
+<p>Prévoyez un espace protégé de la pluie, surélevé par rapport au sol et suffisamment ventilé. Pour plusieurs stères, vérifiez aussi que l'accès et la capacité de stockage sont adaptés au volume commandé.</p>
+<a href="https://monbois.net/guides" target="_blank" rel="noopener noreferrer">Voir les guides de stockage</a>
+</article>
+
+<article class="guide-card">
+<h3>Bien préparer la livraison</h3>
+<p>Avant le passage du camion, vérifiez l'accès au lieu de déchargement. Le rangement n'est généralement pas inclus dans une livraison classique : prévoyez donc l'espace et la manutention nécessaires.</p>
+<a href="https://monbois.net/conseils/livraison-bois-de-chauffage-domicile" target="_blank" rel="noopener noreferrer">Comprendre la livraison sur MonBois.net</a>
+</article>
+
+<article class="guide-card">
+<h3>Comparer un prix de bois de chauffage</h3>
+<p>Ne comparez pas uniquement le prix du stère : regardez aussi l'essence, l'humidité, la longueur des bûches, le volume commandé et surtout le prix total livré à votre domicile.</p>
+<a href="https://monbois.net/prix-stere-bois-chauffage" target="_blank" rel="noopener noreferrer">Voir le guide des prix 2026</a>
+</article>
+
+<article class="guide-card">
+<h3>Choisir le bon moment pour commander</h3>
+<p>Anticiper permet de mieux organiser le stockage et d'éviter une commande de dernière minute. Vérifiez surtout que le bois commandé correspond à votre besoin réel et à votre capacité de stockage.</p>
+<a href="https://monbois.net/guides" target="_blank" rel="noopener noreferrer">Voir tous les guides MonBois.net</a>
+</article>
+
+</div>
+
+<div class="guide-note">
+<strong>Conseil Boiséo :</strong> avant de valider une commande, vérifiez toujours quatre éléments : l'essence, la longueur des bûches, la quantité et l'état de séchage. Ajoutez ensuite le coût réel de la livraison pour comparer les offres correctement.
+</div>
+
+</div>
+</section>
+
 
 <!-- =====================================================
      FAQ
@@ -2736,6 +2881,25 @@ votre mail et les détails de votre commande.
 
 </details>
 
+<details class="faq-item">
+<summary>Comment estimer la quantité de bois nécessaire pour un hiver ?</summary>
+<p>Il n'existe pas une quantité identique pour toutes les maisons. La surface, l'isolation, la région, les températures et la fréquence d'utilisation de l'appareil influencent la consommation. Si vous avez déjà utilisé du bois, votre consommation de l'hiver précédent constitue un bon repère.</p>
+</details>
+
+<details class="faq-item">
+<summary>Pourquoi l'humidité du bois est-elle importante ?</summary>
+<p>Un bois trop humide brûle moins efficacement et une partie de l'énergie sert à évaporer l'eau contenue dans les bûches. Pour une bonne combustion, on recherche généralement un taux d'humidité inférieur à 20 %.</p>
+</details>
+
+<details class="faq-item">
+<summary>Quelle différence entre une bûche de 33 cm et de 50 cm ?</summary>
+<p>La longueur doit d'abord être compatible avec votre appareil. La recoupe influence aussi le volume apparent occupé et le coût de préparation. Chez Boiséo, les deux longueurs disponibles sont 33 cm et 50 cm ; la longueur de 50 cm entraîne le supplément prévu dans la grille tarifaire.</p>
+</details>
+
+<details class="faq-item">
+<summary>Que faut-il vérifier le jour de la livraison ?</summary>
+<p>Vérifiez l'essence annoncée, la longueur des bûches, la quantité, le conditionnement et l'état général du bois. Si le bois est annoncé comme sec, vous pouvez également contrôler plusieurs bûches avec un humidimètre, idéalement sur une face fraîchement fendue.</p>
+</details>
 
 </div>
 
@@ -2931,7 +3095,7 @@ en France.
 
 <script>
 (function(){
-  const email = "contact@boiseo.online";
+  const email = "boiseo.eu@outlook.fr";
 
   // Menu mobile
   const toggle = document.querySelector(".mobile-menu-toggle");
@@ -3117,9 +3281,9 @@ en France.
     if(/volume|stere|quantite/.test(text))
       return "Les volumes proposés sont 1, 2, 3, 5, 10, 20, 30, 40 et 60 stères.";
     if(/commander|commande|acheter|demande/.test(text))
-      return "Pour commander, utilisez le formulaire du site ou le bouton ✉ flottant. La demande est préparée pour être envoyée à contact@boiseo.online.";
+      return "Pour commander, utilisez le formulaire du site ou le bouton ✉ flottant. La demande est préparée pour être envoyée à boiseo.eu@outlook.fr.";
     if(/contact|email|mail|outlook/.test(text))
-      return "L’adresse de contact de Boiséo est contact@boiseo.online.";
+      return "L’adresse de contact de Boiséo est boiseo.eu@outlook.fr.";
     return "Je peux vous renseigner sur les essences, les longueurs, les volumes, les tarifs, la livraison en France et la commande. Essayez par exemple : « Quels sont les tarifs ? »";
   }
   function addAssistantMessage(text, user=false){
