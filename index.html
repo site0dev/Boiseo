@@ -1535,7 +1535,7 @@ section{position:relative}
 /* ===== Assistant + contact flottants Boiséo ===== */
 .boiseo-floating-actions{
   position:fixed;
-  right:22px;
+  right:calc(22px + 0.5cm);
   bottom:135px;
   z-index:10000;
   display:flex;
@@ -1607,7 +1607,7 @@ section{position:relative}
 /* Fenêtre de l'assistant : au-dessus des deux boutons */
 .boiseo-assistant-panel{
   position:fixed;
-  right:22px;
+  right:calc(22px + 0.5cm);
   bottom:209px;
   width:min(360px,calc(100vw - 30px));
   max-height:min(560px,calc(100vh - 120px));
@@ -1669,11 +1669,11 @@ section{position:relative}
 .boiseo-assistant-form input:focus{border-color:#4a8663;box-shadow:0 0 0 3px rgba(74,134,99,.1)}
 .boiseo-assistant-form button{width:42px;border:0;border-radius:12px;background:#234e36;color:#fff;font-size:18px;cursor:pointer}
 @media(max-width:550px){
-  .boiseo-floating-actions{right:12px;bottom:118px;gap:7px}
+  .boiseo-floating-actions{right:calc(12px + 0.5cm);bottom:118px;gap:7px}
   .boiseo-floating-action{width:52px;height:52px}
   .boiseo-floating-action__icon{font-size:24px}
   .boiseo-floating-action--assistant .boiseo-floating-action__icon{font-size:27px}
-  .boiseo-assistant-panel{right:12px;bottom:179px;width:calc(100vw - 24px);max-height:calc(100vh - 100px)}
+  .boiseo-assistant-panel{right:calc(12px + 0.5cm);bottom:179px;width:calc(100vw - 24px);max-height:calc(100vh - 100px)}
 }
 </style>
 
@@ -2650,18 +2650,15 @@ Demander un devis
   <button class="boiseo-floating-action boiseo-floating-action--assistant" id="boiseoAssistantToggle" type="button" aria-label="Ouvrir l'assistant Boiséo" aria-expanded="false">
     <span class="boiseo-floating-action__icon" aria-hidden="true">
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M24 5v5" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="24" cy="4" r="2" fill="currentColor"/>
-        <rect x="8" y="11" width="32" height="27" rx="10" fill="white" fill-opacity=".18" stroke="white" stroke-width="2"/>
-        <circle cx="18" cy="24" r="3" fill="white"/>
-        <circle cx="30" cy="24" r="3" fill="white"/>
-        <path d="M17 31c4 3 10 3 14 0" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="M8 22H5M43 22h-3" stroke="white" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+        <path d="M10 12.5A5.5 5.5 0 0 1 15.5 7h17A5.5 5.5 0 0 1 38 12.5v13A5.5 5.5 0 0 1 32.5 31H23l-8.5 8v-8h-1A5.5 5.5 0 0 1 8 25.5v-13A5.5 5.5 0 0 1 10 12.5Z" fill="white" fill-opacity=".14" stroke="white" stroke-width="2.5" stroke-linejoin="round"/>
+        <circle cx="17" cy="19" r="2" fill="white"/>
+        <circle cx="24" cy="19" r="2" fill="white"/>
+        <circle cx="31" cy="19" r="2" fill="white"/>
       </svg>
     </span>
   </button>
   <a class="boiseo-floating-action boiseo-floating-action--mail"
-     href="mailto:boiseo.eu@outlook.fr?subject=Demande%20de%20livraison%20Bois%C3%A9o&body=Bonjour%20Bois%C3%A9o%2C%0A%0AJe%20souhaite%20faire%20une%20demande%20de%20livraison.%0A%0ANom%20et%20pr%C3%A9nom%20%3A%0AVille%20%3A%0ACode%20postal%20%3A%0AAdresse%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0AMail%20%3A%0A%0AMerci."
+     href="mailto:contact@boiseo.online?subject=Demande%20de%20livraison%20Bois%C3%A9o&body=Bonjour%20Bois%C3%A9o%2C%0A%0AJe%20souhaite%20faire%20une%20demande%20de%20livraison.%0A%0ANom%20et%20pr%C3%A9nom%20%3A%0AVille%20%3A%0ACode%20postal%20%3A%0AAdresse%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0AMail%20%3A%0A%0AMerci."
      aria-label="Écrire à Boiséo par email">
     <span class="boiseo-floating-action__icon" aria-hidden="true">
       <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3095,7 +3092,7 @@ en France.
 
 <script>
 (function(){
-  const email = "boiseo.eu@outlook.fr";
+  const email = "contact@boiseo.online";
 
   // Menu mobile
   const toggle = document.querySelector(".mobile-menu-toggle");
@@ -3281,9 +3278,9 @@ en France.
     if(/volume|stere|quantite/.test(text))
       return "Les volumes proposés sont 1, 2, 3, 5, 10, 20, 30, 40 et 60 stères.";
     if(/commander|commande|acheter|demande/.test(text))
-      return "Pour commander, utilisez le formulaire du site ou le bouton ✉ flottant. La demande est préparée pour être envoyée à boiseo.eu@outlook.fr.";
+      return "Pour commander, utilisez le formulaire du site ou le bouton ✉ flottant. La demande est préparée pour être envoyée à contact@boiseo.online.";
     if(/contact|email|mail|outlook/.test(text))
-      return "L’adresse de contact de Boiséo est boiseo.eu@outlook.fr.";
+      return "L’adresse de contact de Boiséo est contact@boiseo.online.";
     return "Je peux vous renseigner sur les essences, les longueurs, les volumes, les tarifs, la livraison en France et la commande. Essayez par exemple : « Quels sont les tarifs ? »";
   }
   function addAssistantMessage(text, user=false){
