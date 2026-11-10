@@ -14,7 +14,7 @@
 <meta content="Boiseo" name="author"/>
 <link href="https://www.boiseo.fr/" rel="canonical"/>
 <meta content="Boiseo - Bois de chauffage très sec" property="og:title"/>
-<meta content="Bois de chauffage sec en France : chêne, frêne, hêtre et charme, bûches 33 ou 50 cm, de 1 à 60 stères, conseils et livraison à domicile." property="og:description"/>
+<meta content="Bois de chauffage très sec : chêne, frêne, hêtre et charme, bûches 33 ou 50 cm, de 1 à 60 stères, conseils et livraison en France et en Allemagne." property="og:description"/>
 <meta content="website" property="og:type"/>
 <meta content="https://www.boiseo.fr/" property="og:url"/>
 <style>
@@ -1803,8 +1803,6 @@ Commander
 <div class="small-title">
 
 🔥 BOIS DE CHAUFFAGE
-•
-FRANCE
 
 </div>
 <h1>
@@ -2955,4 +2953,542 @@ en France et en Allemagne.
     if(/longueur|33|50|buche|scheitl|länge/.test(text))
       return de ? "Die auf der Website angegebenen Scheitlängen sind 33 cm und 50 cm." : "Les longueurs disponibles indiquées sur le site sont 33 cm et 50 cm.";
     if(/volume|stere|quantite|menge/.test(text))
-      return de ? "Verfügbare Mengen: 1, 2, 3, 5, 10, 20, 30, 40 und 60 Ster." : "Les volumes proposés sont 1, 2, 3, 5, 10
+      return de ? "Verfügbare Mengen: 1, 2, 3, 5, 10, 20, 30, 40 und 60 Ster." : "Les volumes proposés sont 1, 2, 3, 5, 10, 20, 30, 40 et 60 stères.";
+    if(/commander|commande|acheter|demande|bestell|kaufen/.test(text))
+      return de ? "Verwenden Sie zum Bestellen das Formular auf der Website oder die schwebende ✉-Schaltfläche. Ihre Anfrage wird für den Versand an contact@boiseo.online vorbereitet." : "Pour commander, utilisez le formulaire du site ou le bouton ✉ flottant. La demande est préparée pour être envoyée à contact@boiseo.online.";
+    if(/contact|email|mail|outlook/.test(text))
+      return de ? "Die Kontaktadresse von Boiseo lautet contact@boiseo.online." : "L’adresse de contact de Boiseo est contact@boiseo.online.";
+    return de ? "Ich kann Ihnen Informationen zu Holzarten, Scheitlängen, Mengen, Preisen, Lieferung nach Frankreich und Deutschland sowie zur Bestellung geben. Fragen Sie zum Beispiel: „Wie sind die Preise?“" : "Je peux vous renseigner sur les essences, les longueurs, les volumes, les tarifs, la livraison en France et en Allemagne et la commande. Essayez par exemple : « Quels sont les tarifs ? »";
+  }
+  function addAssistantMessage(text, user=false){
+    if(!assistantBody) return;
+    const div=document.createElement("div");
+    div.className="boiseo-assistant-message";
+    if(user){ div.style.background="#e8f0ea"; div.style.marginLeft="22px"; }
+    div.textContent=text;
+    assistantBody.appendChild(div);
+    assistantBody.scrollTop=assistantBody.scrollHeight;
+  }
+  function askAssistant(q){
+    if(!q || !q.trim()) return;
+    addAssistantMessage(q.trim(),true);
+    setTimeout(()=>addAssistantMessage(assistantAnswer(q)),120);
+  }
+  document.querySelectorAll("[data-assistant-q]").forEach(btn=>btn.addEventListener("click",()=>askAssistant(btn.dataset.assistantQ)));
+  assistantForm && assistantForm.addEventListener("submit",e=>{
+    e.preventDefault();
+    const q=assistantInput ? assistantInput.value : "";
+    askAssistant(q);
+    if(assistantInput) assistantInput.value="";
+  });
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape") toggleAssistant(false); });
+
+})();
+</script>
+<script>
+(function(){
+  function initExpandableTexts(){
+    const selectors = [
+      'p',
+      '.guide-card li',
+      '.essence p',
+      '.utility p',
+      '.delivery li'
+    ];
+    document.querySelectorAll(selectors.join(',')).forEach(function(el){
+      if(el.classList.contains('expandable-text')) return;
+      const text=(el.textContent||'').replace(/\s+/g,' ').trim();
+      if(text.length < 140) return;
+      el.classList.add('expandable-text');
+      el.setAttribute('role','button');
+      el.setAttribute('tabindex','0');
+      el.setAttribute('aria-expanded','false');
+      function toggle(){
+        const expanded=el.classList.toggle('is-expanded');
+        el.setAttribute('aria-expanded',String(expanded));
+      }
+      el.addEventListener('click',toggle);
+      el.addEventListener('keydown',function(e){
+        if(e.key==='Enter' || e.key===' '){e.preventDefault();toggle();}
+      });
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initExpandableTexts);
+  else initExpandableTexts();
+})();
+</script>
+<script>
+(function(){
+ const translations = {
+ "Présentation":"Präsentation","Nos bois":"Unser Brennholz","Utilité":"Verwendung","Tarifs":"Preise","Galerie":"Galerie","Conseils":"Tipps","Livraison":"Lieferung","FAQ":"FAQ","Commander":"Bestellen",
+ "🔥 BOIS DE CHAUFFAGE":"🔥 BRENNHOLZ",
+ "Le bois qui chauffe vraiment.":"Brennholz, das wirklich wärmt.",
+ "Bienvenue chez":"Willkommen bei",
+ ",\nvotre spécialiste du bois de chauffage\ntrès sec.\n\nNous proposons un mélange de":"– Ihrem Spezialisten für sehr trockenes Brennholz.\n\nWir bieten eine Mischung aus",
+ "chêne, frêne, hêtre et charme":"Eiche, Esche, Buche und Hainbuche",
+ ",\ncoupé en longueurs de":"in Längen geschnitten von",
+ "33 cm et 50 cm":"33 cm und 50 cm",
+ "Voir nos tarifs":"Preise ansehen","Demander un devis":"Angebot anfordern","🔥 Bois très sec":"🔥 Sehr trockenes Holz","🌳 4 essences":"🌳 4 Holzarten","🚚 Livraison":"🚚 Lieferung",
+ "Votre chauffage,\nnotre priorité.":"Ihre Wärme,\nunsere Priorität.",
+ "Boiseo vous accompagne dans\nl'approvisionnement en bois de\nchauffage pour votre maison,\nvotre cheminée, votre poêle\nou votre chaudière à bois.":"Boiseo unterstützt Sie bei der Versorgung mit Brennholz für Ihr Zuhause, Ihren Kamin, Ofen oder Holzkessel.",
+ "Obtenir un devis →":"Angebot erhalten →","Longueurs disponibles":"Verfügbare Längen","Stères disponibles":"Verfügbare Ster","4 essences":"4 Holzarten","Chêne, frêne, hêtre, charme":"Eiche, Esche, Buche, Hainbuche","France":"Frankreich","Livraison selon destination":"Lieferung je nach Zielort",
+ "QUI SOMMES-NOUS ?":"WER SIND WIR?","Boiseo, votre bois de chauffage.":"Boiseo – Ihr Brennholzlieferant.",
+ "Une solution simple pour vous\napprovisionner en bois de chauffage\nsec et adapté à vos besoins.":"Eine einfache Lösung, um trockenes Brennholz passend zu Ihrem Bedarf zu beziehen.",
+ "Un bois sélectionné pour votre confort":"Ausgewähltes Holz für Ihren Komfort",
+ "Boiseo propose un mélange de":"Boiseo bietet eine Mischung aus",
+ ".\nCes essences sont particulièrement\nappréciées pour leur utilisation\ncomme bois de chauffage.":". Diese Holzarten werden besonders als Brennholz geschätzt.",
+ "Notre bois est présenté dans\nles longueurs de":"Unser Holz ist in folgenden Längen erhältlich:",
+ "33 cm":"33 cm","et":"und","50 cm":"50 cm",
+ ", afin de\ns'adapter à différents types\nd'appareils de chauffage.":", passend für verschiedene Heizgeräte.",
+ "Que vous soyez particulier,\nprofessionnel, propriétaire d'un\ngîte ou utilisateur d'un système\nde chauffage au bois, Boiseo\nvous permet de commander le\nvolume correspondant à votre besoin.":"Ob Privatperson, Gewerbetreibender, Betreiber einer Ferienunterkunft oder Nutzer einer Holzheizung – bei Boiseo können Sie die passende Menge bestellen.",
+ "Bois de chauffage très sec":"Sehr trockenes Brennholz","Mélange chêne, frêne, hêtre et charme":"Mischung aus Eiche, Esche, Buche und Hainbuche","Longueurs 33 cm et 50 cm":"Längen 33 cm und 50 cm","Volumes de 1 à 60 stères":"Mengen von 1 bis 60 Ster",
+ "La chaleur naturelle\ndu bois.":"Die natürliche Wärme\ndes Holzes.","Une énergie traditionnelle\npour accompagner vos hivers.":"Eine traditionelle Wärmequelle für die kalte Jahreszeit.",
+ "NOS ESSENCES":"UNSERE HOLZARTEN","Chêne, frêne, hêtre et charme.":"Eiche, Esche, Buche und Hainbuche.",
+ "Boiseo propose un mélange de\nquatre essences de bois feuillus,\ndestiné au chauffage.":"Boiseo bietet eine Mischung aus vier Laubholzarten zum Heizen.",
+ "Chêne":"Eiche","Le chêne est un bois dense,\nlargement utilisé pour le\nchauffage au bois.\n\nIl est apprécié pour sa\ncombustion durable.":"Eiche ist ein dichtes Holz, das häufig zum Heizen verwendet wird und für seine lange Brenndauer geschätzt wird.",
+ "Frêne":"Esche","Le frêne est une essence\ncouramment recherchée pour\nson utilisation comme bois\nde chauffage.":"Esche ist eine Holzart, die häufig als Brennholz verwendet wird.",
+ "Hêtre":"Buche","Le hêtre est un bois dense\nqui convient parfaitement\nà différents usages de\nchauffage domestique.":"Buche ist ein dichtes Holz und eignet sich für verschiedene Arten der häuslichen Beheizung.",
+ "Charme":"Hainbuche","Le charme est une essence\ndense particulièrement\nappréciée comme bois\nde chauffage.":"Hainbuche ist ein besonders dichtes Holz, das als Brennholz geschätzt wird.",
+ "ℹ️ Information :":"ℹ️ Information:",
+ "Les caractéristiques exactes du bois,\nson taux d'humidité, son cubage,\nson conditionnement et les modalités\nde livraison sont à confirmer lors\nde la commande ou sur le devis.":"Die genauen Eigenschaften des Holzes, seine Restfeuchte, das Volumen, die Verpackung und die Lieferbedingungen werden bei der Bestellung oder im Angebot bestätigt.",
+ "UTILITÉ DE NOS BOIS":"VERWENDUNG UNSERES HOLZES","Pour quels usages utiliser\nle bois Boiseo ?":"Wofür kann Boiseo-Brennholz verwendet werden?",
+ "Notre bois de chauffage peut être\nutilisé dans différents équipements\nprévus pour le chauffage au bois.":"Unser Brennholz kann in verschiedenen dafür vorgesehenen Holzheizgeräten verwendet werden.",
+ "Cheminée":"Kamin","Profitez de la chaleur et de\nl'ambiance d'un feu de bois\ndans une cheminée adaptée.":"Genießen Sie die Wärme und Atmosphäre eines Holzfeuers in einem geeigneten Kamin.",
+ "Poêle à bois":"Holzofen","Les bûches de 33 cm ou 50 cm\npeuvent convenir aux appareils\ndont le foyer accepte ces\ndimensions.":"Die 33- oder 50-cm-Scheite eignen sich für Geräte, deren Brennraum diese Maße zulässt.",
+ "Chauffage domestique":"Heizung im Haushalt","Le bois peut contribuer au\nchauffage de votre habitation\nlorsqu'il est utilisé dans un\nappareil approprié.":"Holz kann Ihr Zuhause heizen, wenn es in einem geeigneten Gerät verwendet wird.",
+ "Maison secondaire":"Zweitwohnsitz","Constituez votre stock de bois\navant la saison froide pour\nvotre résidence principale\nou secondaire.":"Legen Sie vor der kalten Jahreszeit einen Holzvorrat für Ihren Haupt- oder Zweitwohnsitz an.",
+ "Professionnels":"Gewerbekunden","Nous pouvons également répondre\naux demandes de volumes importants\npour les professionnels, selon\nles conditions de vente.":"Je nach Verkaufsbedingungen können wir auch größere Mengen für Gewerbekunden bereitstellen.",
+ "Stock pour l'hiver":"Holzvorrat für den Winter","Anticipez la saison de chauffage\nen commandant le volume de bois\ncorrespondant à vos besoins.":"Planen Sie die Heizsaison voraus und bestellen Sie die benötigte Holzmenge.",
+ "NOS TARIFS":"UNSERE PREISE","Les prix Boiseo":"Die Preise von Boiseo","Ouvrez le panneau ci-dessous pour consulter les tarifs par volume.":"Öffnen Sie den Bereich unten, um die Preise nach Menge anzuzeigen.","Afficher les tarifs":"Preise anzeigen","POPULAIRE":"BELIEBT",
+ "COMMENT COMMANDER ?":"WIE BESTELLT MAN?","Votre commande en 3 étapes.":"Ihre Bestellung in 3 Schritten.",
+ "Boiseo vous accompagne de la\ndemande de devis jusqu'à\nla livraison.":"Boiseo begleitet Sie von der Angebotsanfrage bis zur Lieferung.",
+ "Choisissez votre volume":"Wählen Sie Ihre Menge","Sélectionnez le nombre de stères\ndont vous avez besoin :\n1, 2, 3, 5, 10, 20, 30,\n40 ou 60 stères.":"Wählen Sie die benötigte Menge: 1, 2, 3, 5, 10, 20, 30, 40 oder 60 Ster.",
+ "Indiquez votre adresse":"Geben Sie Ihre Adresse an","Communiquez votre adresse et votre code postal pour organiser la livraison.":"Teilen Sie uns Ihre Adresse und Postleitzahl mit, damit wir die Lieferung organisieren können.",
+ "Recevez votre confirmation":"Erhalten Sie Ihre Bestätigung","Nous vous confirmons les conditions de livraison partout en France et le montant final avant la commande.":"Wir bestätigen Ihnen die Lieferbedingungen in Frankreich und Deutschland sowie den Endbetrag vor der Bestellung.",
+ "LIVRAISON":"LIEFERUNG","France et Allemagne.":"Frankreich und Deutschland.",
+ "Vous souhaitez recevoir votre\nbois de chauffage directement\nchez vous ?\n\nContactez Boiseo avec votre\nadresse et le volume souhaité.":"Möchten Sie Ihr Brennholz direkt nach Hause geliefert bekommen?\n\nKontaktieren Sie Boiseo mit Ihrer Adresse und der gewünschten Menge.",
+ "Livraison en France et en Allemagne":"Lieferung in Frankreich und Deutschland","Adresse de livraison renseignée dans le formulaire":"Lieferadresse im Formular angeben","Tarif calculé selon le volume et la longueur des bûches":"Preis abhängig von Menge und Scheitlänge",
+ "Livraison de votre bois":"Lieferung Ihres Brennholzes","Indiquez votre adresse,\nvotre code postal et votre\nquantité de stères.":"Geben Sie Ihre Adresse, Postleitzahl und die gewünschte Stermenge an.",
+ "← Précédent":"← Zurück","Suivant →":"Weiter →","Page 1":"Seite 1",
+ "CONSEILS BOIS DE CHAUFFAGE":"TIPPS ZUM BRENNHOLZ","Bien choisir, commander et conserver votre bois.":"Holz richtig auswählen, bestellen und lagern.",
+ "Boiseo vous aide aussi à mieux comprendre votre commande : quantité nécessaire pour l'hiver, essence, humidité, longueur des bûches, stockage et livraison. Ces repères complètent les informations de nos tarifs et de notre formulaire de commande.":"Boiseo hilft Ihnen, Ihre Bestellung besser zu planen: benötigte Wintermenge, Holzart, Feuchtigkeit, Scheitlänge, Lagerung und Lieferung. Diese Hinweise ergänzen unsere Preise und das Bestellformular.",
+ "Bien estimer votre quantité de bois":"Die benötigte Holzmenge richtig einschätzen",
+ "Conseil Boiseo :":"Boiseo-Tipp:","mieux vaut prévoir votre approvisionnement suffisamment tôt afin de disposer de votre bois au moment où vous en avez besoin.":"Planen Sie Ihre Bestellung frühzeitig, damit Ihr Holz rechtzeitig verfügbar ist.",
+ "Comprendre le stère et les longueurs":"Ster und Scheitlängen verstehen",
+ "Choisir votre essence de bois":"Die passende Holzart auswählen","Stocker correctement votre bois":"Ihr Holz richtig lagern","Préparer votre livraison":"Ihre Lieferung vorbereiten","Commander votre bois simplement":"Einfach Brennholz bestellen","Vérifier que le bois est suffisamment sec":"Prüfen, ob das Holz trocken genug ist","Préparer le stockage avant la livraison":"Die Lagerung vor der Lieferung vorbereiten","Bien préparer la livraison":"Die Lieferung gut vorbereiten","Comparer un prix de bois de chauffage":"Brennholzpreise vergleichen","Choisir le bon moment pour commander":"Den richtigen Bestellzeitpunkt wählen",
+ "QUESTIONS FRÉQUENTES":"HÄUFIGE FRAGEN","Tout savoir avant de commander.":"Alles Wichtige vor der Bestellung.",
+ "Quelles essences de bois propose Boiseo ?":"Welche Holzarten bietet Boiseo an?","Quelles longueurs de bûches sont disponibles ?":"Welche Scheitlängen sind verfügbar?","Quels volumes puis-je commander ?":"Welche Mengen kann ich bestellen?","Quel est le prix d'un stère ?":"Wie viel kostet ein Ster?","Le prix comprend-il la livraison ?":"Ist die Lieferung im Preis enthalten?","Comment demander un devis ?":"Wie kann ich ein Angebot anfordern?","Comment estimer la quantité de bois nécessaire pour un hiver ?":"Wie schätze ich die benötigte Holzmenge für den Winter?","Pourquoi l'humidité du bois est-elle importante ?":"Warum ist die Holzfeuchtigkeit wichtig?","Quelle différence entre une bûche de 33 cm et de 50 cm ?":"Was ist der Unterschied zwischen 33-cm- und 50-cm-Scheiten?","Que faut-il vérifier le jour de la livraison ?":"Was sollte am Liefertag überprüft werden?",
+ "Boiseo propose un mélange de\nchêne, frêne, hêtre et charme.":"Boiseo bietet eine Mischung aus Eiche, Esche, Buche und Hainbuche.",
+ "Les longueurs présentées dans\nla vidéo sont de 33 cm et 50 cm.":"Die angegebenen Scheitlängen betragen 33 cm und 50 cm.",
+ "Les volumes affichés sont :\n1, 2, 3, 5, 10, 20, 30,\n40 et 60 stères.":"Verfügbare Mengen: 1, 2, 3, 5, 10, 20, 30, 40 und 60 Ster.",
+ "Le tarif dépend du volume commandé.\nPar exemple, 1 stère est affiché\nà 40 €, tandis que 60 stères\nsont affichés à 1 600 €.\n\nConsultez la grille complète\ndes tarifs ci-dessus.":"Der Preis hängt von der bestellten Menge ab. Beispielsweise kostet 1 Ster 40 €, während 60 Ster mit 1.600 € angegeben sind.\n\nDie vollständige Preisliste finden Sie oben.",
+ "Le coût de transport doit être\nconfirmé selon la destination,\nle volume et les conditions\nlogistiques.":"Die Transportkosten müssen je nach Zielort, Menge und logistischen Bedingungen bestätigt werden.",
+ "Remplissez le formulaire\nde contact et indiquez votre\nnom et prénom, votre ville, votre code\npostal, votre adresse, votre téléphone,\nvotre mail et les détails de votre commande.":"Füllen Sie das Kontaktformular aus und geben Sie Ihren Namen, Ihre Stadt, Postleitzahl, Adresse, Telefonnummer, E-Mail-Adresse und Bestelldetails an.",
+ "COMMANDE & LIVRAISON":"BESTELLUNG & LIEFERUNG","Préparez votre demande de livraison.":"Bereiten Sie Ihre Lieferanfrage vor.","Chêne, frêne, hêtre ou charme":"Eiche, Esche, Buche oder Hainbuche","33 cm ou 50 cm":"33 cm oder 50 cm","Tarif calculé selon le volume choisi":"Preis abhängig von der gewählten Menge",
+ "Votre demande de livraison":"Ihre Lieferanfrage","Tous les champs de livraison importants sont regroupés ici.":"Alle wichtigen Angaben zur Lieferung finden Sie hier.",
+ "Nom et prénom":"Vor- und Nachname","Ville":"Stadt","Code postal":"Postleitzahl","Téléphone":"Telefon","Adresse de livraison":"Lieferadresse","Mail":"E-Mail","Essence":"Holzart","Volume":"Menge","Longueur des bûches":"Scheitlänge","Voir le montant estimatif":"Voraussichtlichen Betrag anzeigen","Précisions complémentaires":"Weitere Angaben","🔥 Envoyer ma demande par email":"🔥 Anfrage per E-Mail senden",
+ "Bois de chauffage très sec.":"Sehr trockenes Brennholz.","Chêne • Frêne • Hêtre • Charme":"Eiche • Esche • Buche • Hainbuche","33 cm • 50 cm":"33 cm • 50 cm","Service":"Service","Contact":"Kontakt","© 2026 Boiseo —\nTous droits réservés.":"© 2026 Boiseo – Alle Rechte vorbehalten.","Boiseo - Vente de bois de chauffage\nen France.":"Boiseo – Verkauf von Brennholz in Frankreich und Deutschland.",
+ "Essences":"Holzarten","Tarifs":"Preise","Livraison":"Lieferung","Commande":"Bestellung",
+ "Livraison en France":"Lieferung in Frankreich und Deutschland","Livraison en France uniquement":"Lieferung nur in Frankreich",
+ "Boiseo | Bois de chauffage en France et en Allemagne":"Boiseo | Brennholz in Frankreich und Deutschland",
+ "🔥 BOIS DE CHAUFFAGE":"🔥 BRENNHOLZ",
+ "Boiseo":"Boiseo",
+ ", votre spécialiste du bois de chauffage très sec. Nous proposons un mélange de":" – Ihr Spezialist für sehr trockenes Brennholz. Wir bieten eine Mischung aus",
+ ", coupé en longueurs de":" , geschnitten in Längen von",
+ "📏 33 cm / 50 cm":"📏 33 cm / 50 cm",
+ "Votre chauffage, notre priorité.":"Ihre Wärme ist unsere Priorität.",
+ "Boiseo vous accompagne dans l'approvisionnement en bois de chauffage pour votre maison, votre cheminée, votre poêle ou votre chaudière à bois.":"Boiseo unterstützt Sie bei der Versorgung mit Brennholz für Ihr Zuhause, Ihren Kamin, Ihren Holzofen oder Ihren Holzkessel.",
+ "33 / 50 cm":"33 / 50 cm",
+ "1 à 60":"1 bis 60",
+ "France et Allemagne":"Frankreich und Deutschland",
+ "Une solution simple pour vous approvisionner en bois de chauffage sec et adapté à vos besoins.":"Eine einfache Lösung, um trockenes und auf Ihren Bedarf abgestimmtes Brennholz zu erhalten.",
+ ". Ces essences sont particulièrement appréciées pour leur utilisation comme bois de chauffage.":". Diese Holzarten werden besonders häufig als Brennholz verwendet.",
+ "Notre bois est présenté dans les longueurs de":"Unser Holz ist in den Längen",
+ ", afin de s'adapter à différents types d'appareils de chauffage.":", damit es für verschiedene Heizgeräte geeignet ist.",
+ "Que vous soyez particulier, professionnel, propriétaire d'un gîte ou utilisateur d'un système de chauffage au bois, Boiseo vous permet de commander le volume correspondant à votre besoin.":"Ob Privatkunde, Gewerbetreibender, Betreiber einer Ferienunterkunft oder Nutzer einer Holzheizung – bei Boiseo können Sie die passende Menge bestellen.",
+ "La chaleur naturelle du bois.":"Die natürliche Wärme des Holzes.",
+ "Une énergie traditionnelle pour accompagner vos hivers.":"Eine traditionelle Wärmequelle für Ihre Winter.",
+ "Boiseo propose un mélange de quatre essences de bois feuillus, destiné au chauffage.":"Boiseo bietet eine Mischung aus vier Laubholzarten zum Heizen an.",
+ "Le chêne est un bois dense, largement utilisé pour le chauffage au bois. Il est apprécié pour sa combustion durable.":"Eiche ist ein dichtes Holz, das häufig zum Heizen verwendet wird. Sie wird wegen ihrer langanhaltenden Verbrennung geschätzt.",
+ "Le frêne est une essence couramment recherchée pour son utilisation comme bois de chauffage.":"Esche ist eine Holzart, die häufig als Brennholz verwendet wird.",
+ "Le hêtre est un bois dense qui convient parfaitement à différents usages de chauffage domestique.":"Buche ist ein dichtes Holz und eignet sich für verschiedene Anwendungen im häuslichen Heizbereich.",
+ "Le charme est une essence dense particulièrement appréciée comme bois de chauffage.":"Hainbuche ist eine besonders dichte Holzart, die als Brennholz geschätzt wird.",
+ "Les caractéristiques exactes du bois, son taux d'humidité, son cubage, son conditionnement et les modalités de livraison sont à confirmer lors de la commande ou sur le devis.":"Die genauen Eigenschaften des Holzes, sein Feuchtigkeitsgehalt, die Menge, die Verpackung und die Lieferbedingungen werden bei der Bestellung oder im Angebot bestätigt.",
+ "Pour quels usages utiliser le bois Boiseo ?":"Wofür kann das Holz von Boiseo verwendet werden?",
+ "Notre bois de chauffage peut être utilisé dans différents équipements prévus pour le chauffage au bois.":"Unser Brennholz kann in verschiedenen dafür vorgesehenen Holzheizgeräten verwendet werden.",
+ "Profitez de la chaleur et de l'ambiance d'un feu de bois dans une cheminée adaptée.":"Genießen Sie die Wärme und Atmosphäre eines Holzfeuers in einem geeigneten Kamin.",
+ "Les bûches de 33 cm ou 50 cm peuvent convenir aux appareils dont le foyer accepte ces dimensions.":"Scheite mit 33 oder 50 cm Länge eignen sich für Geräte, deren Brennraum diese Maße zulässt.",
+ "Le bois peut contribuer au chauffage de votre habitation lorsqu'il est utilisé dans un appareil approprié.":"Bei Verwendung in einem geeigneten Gerät kann das Holz zur Beheizung Ihres Hauses beitragen.",
+ "Constituez votre stock de bois avant la saison froide pour votre résidence principale ou secondaire.":"Legen Sie vor Beginn der kalten Jahreszeit einen Holzvorrat für Ihren Haupt- oder Zweitwohnsitz an.",
+ "Nous pouvons également répondre aux demandes de volumes importants pour les professionnels, selon les conditions de vente.":"Je nach Verkaufsbedingungen können wir auch Anfragen von Gewerbekunden zu größeren Mengen bearbeiten.",
+ "Anticipez la saison de chauffage en commandant le volume de bois correspondant à vos besoins.":"Planen Sie die Heizsaison voraus und bestellen Sie die Holzmenge, die Ihrem Bedarf entspricht.",
+ "Boiseo vous accompagne de la demande de devis jusqu'à la livraison.":"Boiseo begleitet Sie von der Angebotsanfrage bis zur Lieferung.",
+ "Sélectionnez le nombre de stères dont vous avez besoin : 1, 2, 3, 5, 10, 20, 30, 40 ou 60 stères.":"Wählen Sie die benötigte Menge: 1, 2, 3, 5, 10, 20, 30, 40 oder 60 Ster.",
+ "Vous souhaitez recevoir votre bois de chauffage directement chez vous ? Contactez Boiseo avec votre adresse et le volume souhaité.":"Möchten Sie Ihr Brennholz direkt nach Hause geliefert bekommen? Kontaktieren Sie Boiseo mit Ihrer Adresse und der gewünschten Menge.",
+ "Indiquez votre adresse, votre code postal et votre quantité de stères.":"Geben Sie Ihre Adresse, Postleitzahl und die gewünschte Stermenge an.",
+ "Assistant flottant Boiseo":"Boiseo-Schwebender Assistent","Assistant Boiseo":"Boiseo-Assistent",
+ "Informations sur les bois, tarifs et livraison":"Informationen zu Holzarten, Preisen und Lieferung",
+ "Bonjour 👋 Je peux vous renseigner sur Boiseo : essences, longueurs, volumes, tarifs, livraison en France et commande.":"Hallo 👋 Ich informiere Sie gerne über Boiseo: Holzarten, Scheitlängen, Mengen, Preise, Lieferung nach Frankreich und Deutschland sowie Bestellungen.",
+ "La quantité nécessaire dépend de votre logement, de son isolation, de la surface chauffée, de votre appareil et de la durée d’utilisation. Pour préparer votre saison de chauffage, partez de votre consommation habituelle et adaptez-la à vos besoins.":"Die benötigte Menge hängt von Ihrem Wohnraum, seiner Dämmung, der beheizten Fläche, Ihrem Heizgerät und der Nutzungsdauer ab. Orientieren Sie sich bei der Planung an Ihrem bisherigen Verbrauch und passen Sie die Menge an Ihren Bedarf an.",
+ "Le stère correspond à une quantité de bois empilé. Le volume apparent occupé par les bûches évolue lorsque celles-ci sont recoupées, car les morceaux plus courts se rangent différemment.":"Ein Ster bezeichnet eine aufgeschichtete Holzmenge. Das sichtbare Volumen verändert sich beim Kürzen der Scheite, da kürzere Stücke anders gestapelt werden.",
+ "Boiseo propose des bûches en":"Boiseo bietet Holzscheite in den Längen",
+ ". Choisissez la longueur adaptée à la taille de votre foyer et aux recommandations de votre appareil de chauffage.":". Wählen Sie die Länge passend zur Größe Ihres Feuerraums und zu den Empfehlungen Ihres Heizgeräts.",
+ "Boiseo propose principalement du":"Boiseo bietet hauptsächlich",
+ "chêne, du frêne, du hêtre et du charme":"Eiche, Esche, Buche und Hainbuche",
+ ". Ces essences de feuillus sont appréciées pour leur densité et leur utilisation comme bois de chauffage.":". Diese Laubhölzer werden wegen ihrer Dichte und ihrer Eignung als Brennholz geschätzt.",
+ "Le choix de l’essence doit aussi tenir compte de votre appareil, de la longueur des bûches et surtout de la qualité du séchage.":"Bei der Wahl der Holzart sollten Sie auch Ihr Heizgerät, die Scheitlänge und vor allem die Qualität der Trocknung berücksichtigen.",
+ "Pour conserver un bois de chauffage de qualité, stockez-le dans un endroit propre, ventilé et protégé des intempéries. Évitez de fermer complètement le bois sous une bâche : l’air doit pouvoir circuler.":"Lagern Sie Brennholz an einem sauberen, gut belüfteten und vor Witterung geschützten Ort. Decken Sie das Holz nicht vollständig luftdicht mit einer Plane ab: Die Luft muss zirkulieren können.",
+ "Surélevez les bûches du sol et laissez suffisamment d’espace entre les rangées pour favoriser une bonne circulation de l’air.":"Lagern Sie die Scheite erhöht über dem Boden und lassen Sie zwischen den Reihen genügend Abstand, damit die Luft gut zirkulieren kann.",
+ "Avant la livraison, vérifiez que l’accès permet au véhicule de se rapprocher facilement du lieu de dépôt. Indiquez dans votre demande les informations utiles concernant l’accès, l’adresse et les éventuelles contraintes.":"Prüfen Sie vor der Lieferung, ob das Fahrzeug problemlos an den Abladeort heranfahren kann. Geben Sie bei Ihrer Anfrage wichtige Informationen zur Zufahrt, Adresse und zu möglichen Einschränkungen an.",
+ "Plus les informations sont précises, plus Boiseo peut préparer votre demande de livraison efficacement.":"Je genauer Ihre Angaben sind, desto besser kann Boiseo Ihre Lieferung vorbereiten.",
+ "Sélectionnez votre essence, votre volume et la longueur de vos bûches dans le formulaire de commande. Ajoutez ensuite vos coordonnées, votre adresse de livraison et toute précision utile.":"Wählen Sie im Bestellformular die Holzart, die Menge und die Scheitlänge aus. Ergänzen Sie anschließend Ihre Kontaktdaten, Lieferadresse und weitere wichtige Angaben.",
+ "Boiseo vous permet ainsi de préparer votre demande directement depuis le site, sans passer par un service externe.":"So können Sie Ihre Anfrage direkt über die Boiseo-Website vorbereiten, ohne einen externen Dienst zu nutzen.",
+ "Pour une bonne combustion, on recherche généralement un taux d'humidité inférieur à 20 %. Une mesure au cœur d'une bûche fendue avec un humidimètre est plus pertinente qu'une simple observation de la surface.":"Für eine gute Verbrennung wird in der Regel ein Feuchtigkeitsgehalt von unter 20 % angestrebt. Eine Messung im Inneren eines gespaltenen Holzscheits mit einem Feuchtigkeitsmessgerät ist aussagekräftiger als eine reine Sichtprüfung der Oberfläche.",
+ "Prévoyez un espace protégé de la pluie, surélevé par rapport au sol et suffisamment ventilé. Pour plusieurs stères, vérifiez aussi que l'accès et la capacité de stockage sont adaptés au volume commandé.":"Planen Sie einen vor Regen geschützten, vom Boden erhöhten und ausreichend belüfteten Lagerplatz ein. Prüfen Sie bei mehreren Ster auch, ob Zufahrt und Lagerkapazität für die bestellte Menge ausreichen.",
+ "Avant le passage du camion, vérifiez l'accès au lieu de déchargement. Le rangement n'est généralement pas inclus dans une livraison classique : prévoyez donc l'espace et la manutention nécessaires.":"Prüfen Sie vor Ankunft des Lkw die Zufahrt zum Abladeort. Das Stapeln des Holzes ist bei einer üblichen Lieferung in der Regel nicht enthalten. Planen Sie daher ausreichend Platz und die nötige Handhabung ein.",
+ "Ne comparez pas uniquement le prix du stère : regardez aussi l'essence, l'humidité, la longueur des bûches, le volume commandé et surtout le prix total livré à votre domicile.":"Vergleichen Sie nicht nur den Preis pro Ster, sondern auch Holzart, Feuchtigkeit, Scheitlänge, Bestellmenge und vor allem den Gesamtpreis inklusive Lieferung zu Ihnen nach Hause.",
+ "Anticiper permet de mieux organiser le stockage et d'éviter une commande de dernière minute. Vérifiez surtout que le bois commandé correspond à votre besoin réel et à votre capacité de stockage.":"Eine frühzeitige Bestellung erleichtert die Lagerplanung und vermeidet kurzfristige Bestellungen. Achten Sie darauf, dass die bestellte Holzmenge Ihrem tatsächlichen Bedarf und Ihrer Lagerkapazität entspricht.",
+ "Boiseo propose un mélange de chêne, frêne, hêtre et charme.":"Boiseo bietet eine Mischung aus Eiche, Esche, Buche und Hainbuche.",
+ "Les longueurs présentées dans la vidéo sont de 33 cm et 50 cm.":"Die auf der Website angegebenen Scheitlängen betragen 33 cm und 50 cm.",
+ "Les volumes affichés sont : 1, 2, 3, 5, 10, 20, 30, 40 et 60 stères.":"Die angezeigten Mengen sind: 1, 2, 3, 5, 10, 20, 30, 40 und 60 Ster.",
+ "Le tarif dépend du volume commandé. Par exemple, 1 stère est affiché à 40 €, tandis que 60 stères sont affichés à 1 600 €. Consultez la grille complète des tarifs ci-dessus.":"Der Preis hängt von der bestellten Menge ab. Beispielsweise kostet 1 Ster 40 €, während 60 Ster mit 1.600 € angegeben sind. Die vollständige Preisliste finden Sie oben.",
+ "Le coût de transport doit être confirmé selon la destination, le volume et les conditions logistiques.":"Die Transportkosten müssen je nach Zielort, Menge und logistischen Bedingungen bestätigt werden.",
+ "Remplissez le formulaire de contact et indiquez votre nom et prénom, votre ville, votre code postal, votre adresse, votre téléphone, votre mail et les détails de votre commande.":"Füllen Sie das Kontaktformular aus und geben Sie Vor- und Nachnamen, Ort, Postleitzahl, Adresse, Telefonnummer, E-Mail-Adresse und die Einzelheiten Ihrer Bestellung an.",
+ "Il n'existe pas une quantité identique pour toutes les maisons. La surface, l'isolation, la région, les températures et la fréquence d'utilisation de l'appareil influencent la consommation. Si vous avez déjà utilisé du bois, votre consommation de l'hiver précédent constitue un bon repère.":"Es gibt keine einheitliche Holzmenge für alle Haushalte. Wohnfläche, Dämmung, Region, Temperaturen und Nutzungshäufigkeit des Heizgeräts beeinflussen den Verbrauch. Wenn Sie bereits mit Holz geheizt haben, ist Ihr Verbrauch des letzten Winters ein guter Anhaltspunkt.",
+ "Un bois trop humide brûle moins efficacement et une partie de l'énergie sert à évaporer l'eau contenue dans les bûches. Pour une bonne combustion, on recherche généralement un taux d'humidité inférieur à 20 %.":"Zu feuchtes Holz verbrennt weniger effizient, da ein Teil der Energie zum Verdampfen des im Holz enthaltenen Wassers benötigt wird. Für eine gute Verbrennung wird in der Regel ein Feuchtigkeitsgehalt von unter 20 % angestrebt.",
+ "La longueur doit d'abord être compatible avec votre appareil. La recoupe influence aussi le volume apparent occupé et le coût de préparation. Chez Boiseo, les deux longueurs disponibles sont 33 cm et 50 cm ; la longueur de 50 cm entraîne le supplément prévu dans la grille tarifaire.":"Die Scheitlänge muss zunächst zu Ihrem Heizgerät passen. Das Kürzen beeinflusst auch das sichtbare Stapelvolumen und die Aufbereitungskosten. Bei Boiseo sind 33 cm und 50 cm erhältlich; für 50-cm-Scheite gilt der in der Preisliste angegebene Aufpreis.",
+ "Vérifiez l'essence annoncée, la longueur des bûches, la quantité, le conditionnement et l'état général du bois. Si le bois est annoncé comme sec, vous pouvez également contrôler plusieurs bûches avec un humidimètre, idéalement sur une face fraîchement fendue.":"Prüfen Sie die angegebene Holzart, Scheitlänge, Menge, Verpackung und den allgemeinen Zustand des Holzes. Wenn das Holz als trocken angeboten wird, können Sie mehrere Scheite mit einem Feuchtigkeitsmessgerät prüfen, idealerweise an einer frisch gespaltenen Fläche.",
+ "Pays de livraison":"Lieferland",
+ "Allemagne":"Deutschland",
+ "Mélange — chêne, frêne, hêtre, charme":"Mischung – Eiche, Esche, Buche, Hainbuche",
+ "Mélange — chêne, frêne, hêtre, charme • 1 stère • 33 cm":"Mischung – Eiche, Esche, Buche, Hainbuche • 1 Ster • 33 cm",
+ "© 2026 Boiseo — Tous droits réservés.":"© 2026 Boiseo – Alle Rechte vorbehalten.",
+ "Boiseo - Vente de bois de chauffage en France et en Allemagne.":"Boiseo – Brennholzverkauf in Frankreich und Deutschland.",
+ "Choisir la langue":"Sprache auswählen",
+ "Ouvrir le menu":"Menü öffnen",
+ "Agrandir la photo du chêne":"Eichenfoto vergrößern",
+ "Bois de chêne Boiseo":"Boiseo-Eichenholz",
+ "Agrandir la photo du frêne":"Eschenfoto vergrößern",
+ "Bois de frêne Boiseo":"Boiseo-Eschenholz",
+ "Agrandir la photo du hêtre":"Buchenfoto vergrößern",
+ "Bois de hêtre Boiseo":"Boiseo-Buchenholz",
+ "Agrandir la photo du charme":"Hainbuchenfoto vergrößern",
+ "Bois de charme Boiseo":"Boiseo-Hainbuchenholz",
+ "Fermer l'image agrandie":"Vergrößertes Bild schließen",
+ "Photo agrandie":"Vergrößertes Foto",
+ "Fermer l'assistant":"Assistent schließen",
+ "Posez votre question…":"Stellen Sie Ihre Frage …",
+ "Question à l'assistant Boiseo":"Frage an den Boiseo-Assistenten",
+ "Envoyer la question":"Frage senden",
+ "Actions flottantes Boisea":"Boiseo-Schnellaktionen",
+ "Actions flottantes Boiseo":"Boiseo-Schnellaktionen",
+ "Ouvrir l'assistant Boiseo":"Boiseo-Assistent öffnen",
+ "Écrire à Boiseo par email":"Boiseo eine E-Mail schreiben",
+ "Votre nom et prénom":"Vor- und Nachname",
+ "Votre ville":"Ihr Ort",
+ "Ex. 75000 / 10115":"z. B. 75000 / 10115",
+ "Code postal à 5 chiffres":"Fünfstellige Postleitzahl",
+ "Votre numéro":"Ihre Telefonnummer",
+ "Numéro de téléphone":"Telefonnummer",
+ "Numéro, rue, complément d'adresse":"Hausnummer, Straße, Adresszusatz",
+ "Adresse":"Adresse",
+ "vous@exemple.fr":"sie@beispiel.de",
+ "Longueur":"Länge",
+ "Montant estimatif":"Geschätzter Betrag",
+ "Accès, indications utiles pour la livraison, besoin particulier…":"Zufahrt, Hinweise zur Lieferung oder besondere Wünsche …",
+ "Précisions":"Zusätzliche Angaben"
+ };
+ const attrs = {
+  "Votre nom et prénom":"Vor- und Nachname","Votre ville":"Ihre Stadt","Ex. 75000":"z. B. 10115","Votre numéro":"Ihre Telefonnummer","Numéro, rue, complément d'adresse":"Straße, Hausnummer, Adresszusatz","vous@exemple.fr":"sie@beispiel.de","Accès, indications utiles pour la livraison, besoin particulier…":"Zufahrt, wichtige Lieferhinweise oder besondere Wünsche…",
+  "Pays de livraison":"Lieferland","Ouvrir le menu":"Menü öffnen","Agrandir la photo du chêne":"Eichenfoto vergrößern","Agrandir la photo du frêne":"Eschenfoto vergrößern","Agrandir la photo du hêtre":"Buchenfoto vergrößern","Agrandir la photo du charme":"Hainbuchenfoto vergrößern"
+ };
+
+ Object.assign(translations,{
+ "Nos bois":"Unser Brennholz","Utilité":"Verwendung","Galerie":"Galerie","Conseils":"Tipps","Commander":"Bestellen",
+ "Boiseo, votre bois de chauffage.":"Boiseo – Ihr Brennholzlieferant.",
+ "Chêne, frêne, hêtre et charme.":"Eiche, Esche, Buche und Hainbuche.",
+ "Le chêne est un bois dense,\nlargement utilisé pour le\nchauffage au bois.\n\nIl est apprécié pour sa\ncombustion durable.":"Eiche ist ein dichtes Holz, das häufig zum Heizen verwendet wird und für seine lange Brenndauer geschätzt wird.",
+ "Le frêne est une essence\ncouramment recherchée pour\nson utilisation comme bois\nde chauffage.":"Esche wird häufig als Brennholz verwendet.",
+ "Le hêtre est un bois dense\nqui convient parfaitement\nà différents usages de\nchauffage domestique.":"Buche ist ein dichtes Holz und eignet sich für verschiedene Arten der häuslichen Beheizung.",
+ "Le charme est une essence\ndense particulièrement\nappréciée comme bois\nde chauffage.":"Hainbuche ist ein besonders dichtes und geschätztes Brennholz.",
+ "Pour quels usages utiliser\nle bois Boiseo ?":"Wofür kann Boiseo-Brennholz verwendet werden?",
+ "Profitez de la chaleur et de\nl'ambiance d'un feu de bois\ndans une cheminée adaptée.":"Genießen Sie die Wärme und Atmosphäre eines Holzfeuers in einem geeigneten Kamin.",
+ "Les bûches de 33 cm ou 50 cm\npeuvent convenir aux appareils\ndont le foyer accepte ces\ndimensions.":"Die 33- oder 50-cm-Scheite eignen sich für Geräte, deren Brennraum diese Maße zulässt.",
+ "Le bois peut contribuer au\nchauffage de votre habitation\nlorsqu'il est utilisé dans un\nappareil approprié.":"Holz kann Ihr Zuhause heizen, wenn es in einem geeigneten Gerät verwendet wird.",
+ "Constituez votre stock de bois\navant la saison froide pour\nvotre résidence principale\nou secondaire.":"Legen Sie vor der kalten Jahreszeit einen Holzvorrat für Ihren Haupt- oder Zweitwohnsitz an.",
+ "Nous pouvons également répondre\naux demandes de volumes importants\npour les professionnels, selon\nles conditions de vente.":"Je nach Verkaufsbedingungen können wir auch größere Mengen für Gewerbekunden bereitstellen.",
+ "Anticipez la saison de chauffage\nen commandant le volume de bois\ncorrespondant à vos besoins.":"Planen Sie die Heizsaison voraus und bestellen Sie die benötigte Holzmenge.",
+ "Votre commande en 3 étapes.":"Ihre Bestellung in 3 Schritten.",
+ "Sélectionnez le nombre de stères\ndont vous avez besoin :\n1, 2, 3, 5, 10, 20, 30,\n40 ou 60 stères.":"Wählen Sie die benötigte Menge: 1, 2, 3, 5, 10, 20, 30, 40 oder 60 Ster.",
+ "Boiseo propose principalement du":"Boiseo bietet hauptsächlich",
+ "chêne, du frêne, du hêtre et du charme":"Eiche, Esche, Buche und Hainbuche",
+ ". Ces essences de feuillus sont appréciées pour leur densité et leur utilisation comme bois de chauffage.":". Diese Laubholzarten werden wegen ihrer Dichte und ihrer Eignung als Brennholz geschätzt.",
+ "Le choix de l’essence doit aussi tenir compte de votre appareil, de la longueur des bûches et surtout de la qualité du séchage.":"Bei der Wahl der Holzart sollten auch Ihr Heizgerät, die Scheitlänge und vor allem die Trocknungsqualität berücksichtigt werden.",
+ "Pour conserver un bois de chauffage de qualité, stockez-le dans un endroit propre, ventilé et protégé des intempéries. Évitez de fermer complètement le bois sous une bâche : l’air doit pouvoir circuler.":"Lagern Sie Brennholz an einem sauberen, belüfteten und wettergeschützten Ort. Decken Sie das Holz nicht vollständig luftdicht ab, damit die Luft zirkulieren kann.",
+ "Surélevez les bûches du sol et laissez suffisamment d’espace entre les rangées pour favoriser une bonne circulation de l’air.":"Lagern Sie die Scheite erhöht über dem Boden und lassen Sie genügend Abstand zwischen den Reihen, damit die Luft gut zirkulieren kann.",
+ "Avant la livraison, vérifiez que l’accès permet au véhicule de se rapprocher facilement du lieu de dépôt. Indiquez dans votre demande les informations utiles concernant l’accès, l’adresse et les éventuelles contraintes.":"Prüfen Sie vor der Lieferung, ob das Fahrzeug den Abladeort gut erreichen kann. Geben Sie in Ihrer Anfrage Hinweise zur Zufahrt, Adresse und zu möglichen Einschränkungen an.",
+ "Plus les informations sont précises, plus Boiseo peut préparer votre demande de livraison efficacement.":"Je genauer Ihre Angaben sind, desto besser kann Boiseo die Lieferung vorbereiten.",
+ "Sélectionnez votre essence, votre volume et la longueur de vos bûches dans le formulaire de commande. Ajoutez ensuite vos coordonnées, votre adresse de livraison et toute précision utile.":"Wählen Sie im Bestellformular Holzart, Menge und Scheitlänge aus. Ergänzen Sie anschließend Ihre Kontaktdaten, Lieferadresse und weitere wichtige Angaben.",
+ "Boiseo vous permet ainsi de préparer votre demande directement depuis le site, sans passer par un service externe.":"So können Sie Ihre Anfrage direkt über die Website an Boiseo senden.",
+ "Pour une bonne combustion, on recherche généralement un taux d'humidité inférieur à 20 %. Une mesure au cœur d'une bûche fendue avec un humidimètre est plus pertinente qu'une simple observation de la surface.":"Für eine gute Verbrennung wird in der Regel eine Holzfeuchte von unter 20 % angestrebt. Eine Messung im Inneren eines frisch gespaltenen Scheits mit einem Feuchtigkeitsmessgerät ist aussagekräftiger als eine reine Oberflächenprüfung.",
+ "Prévoyez un espace protégé de la pluie, surélevé par rapport au sol et suffisamment ventilé. Pour plusieurs stères, vérifiez aussi que l'accès et la capacité de stockage sont adaptés au volume commandé.":"Planen Sie einen regengeschützten, erhöhten und ausreichend belüfteten Lagerplatz ein. Prüfen Sie bei mehreren Ster auch, ob Zufahrt und Lagerkapazität für die bestellte Menge ausreichen.",
+ "Avant le passage du camion, vérifiez l'accès au lieu de déchargement. Le rangement n'est généralement pas inclus dans une livraison classique : prévoyez donc l'espace et la manutention nécessaires.":"Prüfen Sie vor Ankunft des Lkw die Zufahrt zum Abladeort. Das Einlagern ist bei einer üblichen Lieferung in der Regel nicht enthalten. Planen Sie daher genügend Platz und die nötige Handhabung ein.",
+ "Ne comparez pas uniquement le prix du stère : regardez aussi l'essence, l'humidité, la longueur des bûches, le volume commandé et surtout le prix total livré à votre domicile.":"Vergleichen Sie nicht nur den Preis pro Ster, sondern auch Holzart, Feuchtigkeit, Scheitlänge, Bestellmenge und vor allem den Gesamtpreis inklusive Lieferung.",
+ "Anticiper permet de mieux organiser le stockage et d'éviter une commande de dernière minute. Vérifiez surtout que le bois commandé correspond à votre besoin réel et à votre capacité de stockage.":"Eine frühzeitige Bestellung erleichtert die Lagerplanung und vermeidet kurzfristige Bestellungen. Achten Sie darauf, dass Menge und Lagerkapazität zu Ihrem tatsächlichen Bedarf passen.",
+ "Les longueurs présentées dans\nla vidéo sont de 33 cm et 50 cm.":"Die angegebenen Scheitlängen betragen 33 cm und 50 cm.",
+ "Les volumes affichés sont :\n1, 2, 3, 5, 10, 20, 30,\n40 et 60 stères.":"Verfügbare Mengen: 1, 2, 3, 5, 10, 20, 30, 40 und 60 Ster.",
+ "Le tarif dépend du volume commandé.\nPar exemple, 1 stère est affiché\nà 40 €, tandis que 60 stères\nsont affichés à 1 600 €.\n\nConsultez la grille complète\ndes tarifs ci-dessus.":"Der Preis hängt von der bestellten Menge ab. Beispielsweise kostet 1 Ster 40 €, während 60 Ster mit 1.600 € angegeben sind.\n\nDie vollständige Preisliste finden Sie oben.",
+ "Le coût de transport doit être\nconfirmé selon la destination,\nle volume et les conditions\nlogistiques.":"Die Transportkosten werden je nach Zielort, Menge und logistischen Bedingungen bestätigt.",
+ "Il n'existe pas une quantité identique pour toutes les maisons. La surface, l'isolation, la région, les températures et la fréquence d'utilisation de l'appareil influencent la consommation. Si vous avez déjà utilisé du bois, votre consommation de l'hiver précédent constitue un bon repère.":"Es gibt keine einheitliche Holzmenge für alle Haushalte. Wohnfläche, Dämmung, Region, Temperaturen und Nutzungshäufigkeit beeinflussen den Verbrauch. Der Verbrauch des letzten Winters ist ein guter Anhaltspunkt.",
+ "Un bois trop humide brûle moins efficacement et une partie de l'énergie sert à évaporer l'eau contenue dans les bûches. Pour une bonne combustion, on recherche généralement un taux d'humidité inférieur à 20 %.":"Zu feuchtes Holz verbrennt weniger effizient, da ein Teil der Energie zum Verdampfen des enthaltenen Wassers benötigt wird. Für eine gute Verbrennung wird üblicherweise eine Holzfeuchte von unter 20 % angestrebt.",
+ "La longueur doit d'abord être compatible avec votre appareil. La recoupe influence aussi le volume apparent occupé et le coût de préparation. Chez Boiseo, les deux longueurs disponibles sont 33 cm et 50 cm ; la longueur de 50 cm entraîne le supplément prévu dans la grille tarifaire.":"Die Scheitlänge muss zunächst zu Ihrem Heizgerät passen. Das Zuschneiden beeinflusst auch das Stapelvolumen und die Aufbereitungskosten. Boiseo bietet 33 cm und 50 cm an; für 50 cm gilt der in der Preisliste angegebene Aufpreis.",
+ "Vérifiez l'essence annoncée, la longueur des bûches, la quantité, le conditionnement et l'état général du bois. Si le bois est annoncé comme sec, vous pouvez également contrôler plusieurs bûches avec un humidimètre, idéalement sur une face fraîchement fendue.":"Prüfen Sie die angegebene Holzart, Scheitlänge, Menge, Verpackung und den allgemeinen Zustand des Holzes. Bei als trocken angebotenem Holz können Sie mehrere Scheite mit einem Feuchtigkeitsmessgerät prüfen, möglichst an einer frisch gespaltenen Fläche.",
+ "Mélange — chêne, frêne, hêtre, charme • 1 stère • 33 cm":"Mischung – Eiche, Esche, Buche, Hainbuche • 1 Ster • 33 cm",
+ "France":"Frankreich","Livraison selon destination":"Lieferung je nach Zielort","France et Allemagne.":"Frankreich und Deutschland."
+ });
+
+ Object.assign(translations,{
+ "🔥 BOIS DE CHAUFFAGE":"🔥 BRENNHOLZ",
+ "📏 33 cm / 50 cm":"📏 33 cm / 50 cm",
+ "1 à 60":"1 bis 60",
+ "Livraison selon destination":"Lieferung je nach Zielort",
+ "France et Allemagne":"Frankreich und Deutschland",
+ "Nom et prénom":"Vor- und Nachname","Pays de livraison":"Lieferland","Ville":"Stadt","Code postal":"Postleitzahl","Téléphone":"Telefon","Adresse":"Adresse","Mail":"E-Mail","Numéro de téléphone":"Telefonnummer","Précisions":"Zusätzliche Angaben","Bois de chêne Boiseo":"Boiseo-Eichenholz","Bois de frêne":"Eschenholz","Bois de hêtre":"Buchenholz","Bois de charme":"Hainbuchenholz",
+ "France et Allemagne.":"Frankreich und Deutschland.",
+ "Nos bois":"Unser Brennholz",
+ "Informations sur les bois, tarifs et livraison":"Informationen zu Holzarten, Preisen und Lieferung",
+ "Bonjour 👋 Je peux vous renseigner sur Boiseo : essences, longueurs, volumes, tarifs, livraison en France et commande.":"Hallo 👋 Ich beantworte gerne Ihre Fragen zu Boiseo: Holzarten, Scheitlängen, Mengen, Preisen, Lieferung und Bestellung.",
+ "Essences":"Holzarten","Commander":"Bestellen","Nos bois":"Unser Brennholz",
+ "Nos bois":"Unser Brennholz","Boise":"Boiseo",
+ "Bien estimer votre quantité de bois":"Ihren Brennholzbedarf richtig einschätzen",
+ "La quantité nécessaire dépend de votre logement, de son isolation, de la surface chauffée, de votre appareil et de la durée d’utilisation. Pour préparer votre saison de chauffage, estimez votre consommation habituelle et prévoyez une marge adaptée à vos besoins.":"Die benötigte Holzmenge hängt von Ihrer Wohnung, ihrer Dämmung, der beheizten Fläche, Ihrem Heizgerät und der Nutzungsdauer ab. Schätzen Sie Ihren üblichen Verbrauch und planen Sie einen passenden Vorrat für die Heizsaison.",
+ "Comprendre le stère et les longueurs":"Ster und Scheitlängen verstehen",
+ "Le stère correspond à une quantité de bois empilé. Le volume apparent occupé par les bûches évolue lorsque celles-ci sont recoupées, car les morceaux plus courts se rangent différemment. Vérifiez toujours l'unité et la longueur indiquées sur votre commande.":"Ein Ster bezeichnet eine bestimmte Menge gestapelten Holzes. Das sichtbare Stapelvolumen verändert sich beim Kürzen der Scheite, da kürzere Stücke anders gestapelt werden. Prüfen Sie stets die angegebene Einheit und Scheitlänge Ihrer Bestellung.",
+ "Boiseo propose des bûches en":"Boiseo bietet Scheite in folgenden Längen an:",
+ ". Choisissez la longueur adaptée à la taille de votre foyer et aux recommandations de votre appareil de chauffage.":". Wählen Sie die Länge passend zur Größe Ihres Feuerraums und gemäß den Empfehlungen Ihres Heizgeräts.",
+ "Choisir votre essence de bois":"Die passende Holzart auswählen",
+ "Boiseo propose principalement du":"Boiseo bietet hauptsächlich",
+ ". Ces essences de feuillus sont appréciées pour leur densité et leur utilisation comme bois de chauffage.":". Diese Laubholzarten werden wegen ihrer Dichte und ihrer Verwendung als Brennholz geschätzt.",
+ "Le choix de l’essence doit aussi tenir compte de votre appareil, de la longueur des bûches et surtout de la qualité du séchage.":"Bei der Wahl der Holzart sollten Sie auch Ihr Heizgerät, die Scheitlänge und vor allem die Qualität der Trocknung berücksichtigen.",
+ "Stocker correctement votre bois":"Ihr Brennholz richtig lagern",
+ "Pour conserver un bois de chauffage de qualité, stockez-le dans un endroit propre, ventilé et protégé des intempéries. Évitez de fermer complètement le bois sous une bâche : l’air doit pouvoir circuler afin de limiter l’humidité.":"Lagern Sie Brennholz an einem sauberen, gut belüfteten und vor Witterung geschützten Ort. Decken Sie das Holz nicht vollständig luftdicht ab: Die Luft muss zirkulieren können, damit sich keine Feuchtigkeit staut.",
+ "Surélevez les bûches du sol et laissez suffisamment d’espace entre les rangées pour favoriser une bonne circulation de l’air.":"Lagern Sie die Scheite erhöht über dem Boden und lassen Sie genügend Abstand zwischen den Reihen, damit die Luft gut zirkulieren kann.",
+ "Préparer votre livraison":"Ihre Lieferung vorbereiten",
+ "Avant la livraison, vérifiez que l’accès permet au véhicule de se rapprocher facilement du lieu de dépôt. Indiquez dans votre demande les informations utiles concernant l’accès, l’emplacement de déchargement et toute contrainte particulière.":"Prüfen Sie vor der Lieferung, ob das Fahrzeug problemlos an den Abladeort heranfahren kann. Geben Sie in Ihrer Anfrage wichtige Informationen zur Zufahrt, zum Abladeplatz und zu möglichen Besonderheiten an.",
+ "Plus les informations sont précises, plus Boiseo peut préparer votre demande de livraison efficacement.":"Je genauer Ihre Angaben sind, desto besser kann Boiseo Ihre Lieferanfrage vorbereiten.",
+ "Commander votre bois simplement":"Brennholz einfach bestellen",
+ "Sélectionnez votre essence, votre volume et la longueur de vos bûches dans le formulaire de commande. Ajoutez ensuite vos coordonnées, votre adresse de livraison et toute précision utile pour préparer votre demande.":"Wählen Sie im Bestellformular die Holzart, die Menge und die Scheitlänge aus. Ergänzen Sie anschließend Ihre Kontaktdaten, die Lieferadresse und weitere wichtige Hinweise.",
+ "Boiseo vous permet ainsi de préparer votre demande directement depuis le site, sans passer par un service externe.":"Mit Boiseo können Sie Ihre Anfrage direkt über die Website vorbereiten, ohne einen externen Dienst nutzen zu müssen.",
+ "Vérifier que le bois est suffisamment sec":"Prüfen, ob das Holz ausreichend trocken ist",
+ "Pour une bonne combustion, on recherche généralement un taux d'humidité inférieur à 20 %. Une mesure au cœur d'une bûche fendue avec un humidimètre est plus pertinente qu'une simple mesure en surface.":"Für eine gute Verbrennung wird üblicherweise ein Feuchtigkeitsgehalt von unter 20 % angestrebt. Eine Messung im Inneren eines gespaltenen Holzscheits mit einem Feuchtigkeitsmessgerät ist aussagekräftiger als eine reine Oberflächenmessung.",
+ "Préparer le stockage avant la livraison":"Den Lagerplatz vor der Lieferung vorbereiten",
+ "Prévoyez un espace protégé de la pluie, surélevé par rapport au sol et suffisamment ventilé. Pour plusieurs stères, vérifiez aussi que l'accès et la capacité de stockage sont adaptés au volume commandé.":"Planen Sie einen regengeschützten, vom Boden erhöhten und ausreichend belüfteten Lagerplatz ein. Prüfen Sie bei mehreren Steren auch, ob Zufahrt und Lagerkapazität für die bestellte Menge ausreichen.",
+ "Bien préparer la livraison":"Die Lieferung gut vorbereiten",
+ "Avant le passage du camion, vérifiez l'accès au lieu de déchargement. Le rangement n'est généralement pas inclus dans une livraison classique : prévoyez donc l'espace et la manutention nécessaires.":"Prüfen Sie vor der Ankunft des Lieferwagens die Zufahrt zum Abladeort. Das Einräumen ist bei einer üblichen Lieferung in der Regel nicht enthalten. Planen Sie daher genügend Platz und die erforderliche Handhabung ein.",
+ "Comparer un prix de bois de chauffage":"Brennholzpreise vergleichen",
+ "Ne comparez pas uniquement le prix du stère : regardez aussi l'essence, l'humidité, la longueur des bûches, le volume commandé et surtout le prix total livré à votre domicile.":"Vergleichen Sie nicht nur den Preis pro Ster, sondern auch Holzart, Feuchtigkeit, Scheitlänge, Bestellmenge und vor allem den Gesamtpreis inklusive Lieferung.",
+ "Choisir le bon moment pour commander":"Den richtigen Bestellzeitpunkt wählen",
+ "Anticiper permet de mieux organiser le stockage et d'éviter une commande de dernière minute. Vérifiez surtout que le bois commandé correspond à votre besoin réel et à votre capacité de stockage.":"Eine frühzeitige Bestellung erleichtert die Lagerplanung und vermeidet kurzfristige Bestellungen. Achten Sie darauf, dass die bestellte Holzmenge Ihrem tatsächlichen Bedarf und Ihrer Lagerkapazität entspricht.",
+ "QUESTIONS FRÉQUENTES":"HÄUFIG GESTELLTE FRAGEN","Tout savoir avant de commander.":"Alles Wichtige vor Ihrer Bestellung.",
+ "Quelles essences de bois propose Boiseo ?":"Welche Holzarten bietet Boiseo an?",
+ "Boiseo propose un mélange de chêne, frêne, hêtre et charme.":"Boiseo bietet eine Mischung aus Eiche, Esche, Buche und Hainbuche an.",
+ "Quelles longueurs de bûches sont disponibles ?":"Welche Scheitlängen sind verfügbar?",
+ "Les longueurs présentées dans la vidéo sont de 33 cm et 50 cm.":"Die im Video gezeigten Scheitlängen betragen 33 cm und 50 cm.",
+ "Quels volumes puis-je commander ?":"Welche Mengen kann ich bestellen?",
+ "Les volumes affichés sont : 1, 2, 3, 5, 10, 20, 30, 40 et 60 stères.":"Verfügbar sind 1, 2, 3, 5, 10, 20, 30, 40 und 60 Ster.",
+ "Quel est le prix d'un stère ?":"Wie viel kostet ein Ster?",
+ "Le tarif dépend du volume commandé. Par exemple, 1 stère est affiché à 40 €, tandis que 60 stères sont affichés à 1 600 €. Consultez la grille complète des tarifs ci-dessus.":"Der Preis hängt von der bestellten Menge ab. Beispielsweise kostet 1 Ster 40 €, während 60 Ster mit 1.600 € angegeben sind. Die vollständige Preisliste finden Sie oben.",
+ "Le prix comprend-il la livraison ?":"Ist die Lieferung im Preis enthalten?",
+ "Le coût de transport doit être confirmé selon la destination, le volume et les conditions logistiques.":"Die Transportkosten müssen je nach Zielort, Menge und logistischen Bedingungen bestätigt werden.",
+ "Comment demander un devis ?":"Wie kann ich ein Angebot anfordern?",
+ "Remplissez le formulaire de contact et indiquez votre nom et prénom, votre ville, votre code postal, votre adresse, votre téléphone, votre mail et les détails de votre commande.":"Füllen Sie das Anfrageformular aus und geben Sie Ihren Vor- und Nachnamen, Ihre Stadt, Postleitzahl, Adresse, Telefonnummer, E-Mail-Adresse und die Einzelheiten Ihrer Bestellung an.",
+ "Comment estimer la quantité de bois nécessaire pour un hiver ?":"Wie schätze ich meinen Brennholzbedarf für einen Winter?",
+ "Il n'existe pas une quantité identique pour toutes les maisons. La surface, l'isolation, la région, les températures et la fréquence d'utilisation de l'appareil influencent la consommation. Si vous avez déjà utilisé du bois, votre consommation de l'hiver précédent constitue un bon repère.":"Es gibt keine einheitliche Holzmenge für alle Haushalte. Wohnfläche, Dämmung, Region, Temperaturen und Nutzungshäufigkeit beeinflussen den Verbrauch. Der Verbrauch des letzten Winters ist ein guter Anhaltspunkt.",
+ "Pourquoi l'humidité du bois est-elle importante ?":"Warum ist die Holzfeuchtigkeit wichtig?",
+ "Un bois trop humide brûle moins efficacement et une partie de l'énergie sert à évaporer l'eau contenue dans les bûches. Pour une bonne combustion, on recherche généralement un taux d'humidité inférieur à 20 %.":"Zu feuchtes Holz verbrennt weniger effizient, da ein Teil der Energie zum Verdampfen des enthaltenen Wassers benötigt wird. Für eine gute Verbrennung wird üblicherweise eine Holzfeuchte von unter 20 % angestrebt.",
+ "Quelle différence entre une bûche de 33 cm et de 50 cm ?":"Was ist der Unterschied zwischen 33-cm- und 50-cm-Scheiten?",
+ "La longueur doit d'abord être compatible avec votre appareil. La recoupe influence aussi le volume apparent occupé et le coût de préparation. Chez Boiseo, les deux longueurs disponibles sont 33 cm et 50 cm ; la longueur de 50 cm entraîne le supplément prévu dans la grille tarifaire.":"Die Scheitlänge muss zunächst zu Ihrem Heizgerät passen. Das Zuschneiden beeinflusst auch das Stapelvolumen und die Aufbereitungskosten. Boiseo bietet 33 cm und 50 cm an; für 50 cm gilt der in der Preisliste angegebene Aufpreis.",
+ "Que faut-il vérifier le jour de la livraison ?":"Was sollte ich am Liefertag überprüfen?",
+ "Vérifiez l'essence annoncée, la longueur des bûches, la quantité, le conditionnement et l'état général du bois. Si le bois est annoncé comme sec, vous pouvez également contrôler plusieurs bûches avec un humidimètre, idéalement sur une face fraîchement fendue.":"Prüfen Sie die angegebene Holzart, Scheitlänge, Menge, Verpackung und den allgemeinen Zustand des Holzes. Bei als trocken angebotenem Holz können Sie mehrere Scheite mit einem Feuchtigkeitsmessgerät prüfen, möglichst an einer frisch gespaltenen Fläche.",
+ "COMMANDE & LIVRAISON":"BESTELLUNG & LIEFERUNG","Préparez votre demande de livraison.":"Bereiten Sie Ihre Lieferanfrage vor.",
+ "Chêne, frêne, hêtre ou charme":"Eiche, Esche, Buche oder Hainbuche","Tarif calculé selon le volume choisi":"Preis abhängig von der gewählten Menge",
+ "Votre demande de livraison":"Ihre Lieferanfrage","Tous les champs de livraison importants sont regroupés ici.":"Hier finden Sie alle wichtigen Angaben zur Lieferung.",
+ "Nom et prénom":"Vor- und Nachname","Pays de livraison":"Lieferland","Ville":"Stadt","Code postal":"Postleitzahl","Téléphone":"Telefon","Adresse de livraison":"Lieferadresse","Mail":"E-Mail","Essence":"Holzart","Volume":"Menge","Longueur des bûches":"Scheitlänge","Voir le montant estimatif":"Voraussichtlichen Betrag anzeigen","Précisions complémentaires":"Zusätzliche Angaben","🔥 Envoyer ma demande par email":"🔥 Anfrage per E-Mail senden",
+ "Votre ville":"Ihre Stadt","Votre nom et prénom":"Ihr Vor- und Nachname","Votre numéro":"Ihre Telefonnummer","Numéro, rue, complément d'adresse":"Hausnummer, Straße, Adresszusatz","vous@exemple.fr":"sie@beispiel.de","Accès, indications utiles pour la livraison, besoin particulier…":"Zufahrt, Hinweise zur Lieferung oder besondere Wünsche …",
+ "Code postal à 5 chiffres":"Postleitzahl mit 5 Ziffern","Choisir la langue":"Sprache auswählen","Ouvrir le menu":"Menü öffnen","Agrandir la photo du chêne":"Eichenfoto vergrößern","Agrandir la photo du frêne":"Eschenfoto vergrößern","Agrandir la photo du hêtre":"Buchenfoto vergrößern","Agrandir la photo du charme":"Hainbuchenfoto vergrößern","Fermer l'image agrandie":"Vergrößertes Bild schließen","Photo agrandie":"Vergrößertes Foto","Fermer l'assistant":"Assistent schließen","Question à l'assistant Boiseo":"Frage an den Boiseo-Assistenten","Posez votre question…":"Stellen Sie Ihre Frage …","Envoyer la question":"Frage senden","Actions flottantes Boiseo":"Boiseo-Schnellaktionen","Ouvrir l'assistant Boiseo":"Boiseo-Assistent öffnen","Écrire à Boiseo par email":"Boiseo eine E-Mail schreiben",
+ "Boiseo - Vente de bois de chauffage en France.":"Boiseo – Brennholzverkauf in Frankreich und Deutschland.",
+ "Bois de chauffage très sec.":"Sehr trockenes Brennholz.","Bois de chauffage en France":"Brennholz in Frankreich und Deutschland"
+ });
+ Object.assign(translations, {
+ "Boise":'Boiseo',
+ "France et Allemagne":'Frankreich und Deutschland',
+ "Livraison selon destination":'Lieferung je nach Zielort',
+ "Les prix Boiseo":'Die Preise von Boiseo',
+ "Ouvrez le panneau ci-dessous pour consulter les tarifs par volume.":'Öffnen Sie das Feld unten, um die Preise nach Bestellmenge anzuzeigen.',
+ "Afficher les tarifs":'Preise anzeigen',
+ "POPULAIRE":'BELIEBT',
+ "Votre commande en 3 étapes.":'Ihre Bestellung in 3 Schritten.',
+ "Choisissez votre volume":'Wählen Sie Ihre Menge',
+ "Indiquez votre adresse":'Geben Sie Ihre Adresse an',
+ "Communiquez votre adresse et votre code postal pour organiser la livraison.":'Teilen Sie uns Ihre Adresse und Postleitzahl mit, damit wir die Lieferung organisieren können.',
+ "Recevez votre confirmation":'Erhalten Sie Ihre Bestätigung',
+ "Nous vous confirmons les conditions de livraison partout en France et le montant final avant la commande.":'Wir bestätigen Ihnen die Lieferbedingungen für Frankreich und Deutschland sowie den Endbetrag vor der Bestellung.',
+ "France et Allemagne.":'Frankreich und Deutschland.',
+ "Livraison en France et en Allemagne":'Lieferung nach Frankreich und Deutschland',
+ "Adresse de livraison renseignée dans le formulaire":'Lieferadresse im Formular angeben',
+ "Tarif calculé selon le volume et la longueur des bûches":'Preis abhängig von Menge und Scheitlänge',
+ "Indiquez votre adresse, votre code postal et votre quantité de stères.":'Geben Sie Ihre Adresse, Postleitzahl und die gewünschte Stermenge an.',
+ "Nos bois":'Unser Brennholz',
+ "← Précédent":'← Zurück',
+ "Page 1":'Seite 1',
+ "Suivant →":'Weiter →',
+ "Informations sur les bois, tarifs et livraison":'Informationen zu Holzarten, Preisen und Lieferung',
+ "Essences":'Holzarten',
+ "Tarifs":'Preise',
+ "Commander":'Bestellen',
+ "Bien choisir, commander et conserver votre bois.":'Brennholz richtig auswählen, bestellen und lagern.',
+ "Bien estimer votre quantité de bois":'Ihren Brennholzbedarf richtig einschätzen',
+ "Comprendre le stère et les longueurs":'Ster und Scheitlängen verstehen',
+ "Choisir votre essence de bois":'Die passende Holzart auswählen',
+ "Stocker correctement votre bois":'Ihr Holz richtig lagern',
+ "Préparer votre livraison":'Ihre Lieferung vorbereiten',
+ "Commander votre bois simplement":'Brennholz einfach bestellen',
+ "Vérifier que le bois est suffisamment sec":'Prüfen, ob das Holz ausreichend trocken ist',
+ "Préparer le stockage avant la livraison":'Die Lagerung vor der Lieferung vorbereiten',
+ "Bien préparer la livraison":'Die Lieferung gut vorbereiten',
+ "Comparer un prix de bois de chauffage":'Brennholzpreise vergleichen',
+ "Choisir le bon moment pour commander":'Den richtigen Zeitpunkt für die Bestellung wählen',
+ "Tout savoir avant de commander.":'Alles Wichtige vor der Bestellung.',
+ "Les volumes affichés sont :":'Die angezeigten Mengen sind:',
+ "Les longueurs présentées dans la vidéo sont de 33 cm et 50 cm.":'Die auf der Website angegebenen Scheitlängen betragen 33 cm und 50 cm.',
+ "Livraison en France":'Lieferung nach Frankreich',
+ "Livraison en Allemagne":'Lieferung nach Deutschland',
+ "Votre demande de livraison":'Ihre Lieferanfrage',
+ "Tous les champs de livraison importants sont regroupés ici.":'Alle wichtigen Angaben zur Lieferung finden Sie hier.',
+ "Nom et prénom":'Vor- und Nachname',
+ "Pays de livraison":'Lieferland',
+ "Ville":'Stadt',
+ "Code postal":'Postleitzahl',
+ "Téléphone":'Telefon',
+ "Adresse de livraison":'Lieferadresse',
+ "Mail":'E-Mail',
+ "Essence":'Holzart',
+ "Volume":'Menge',
+ "Longueur des bûches":'Scheitlänge',
+ "Voir le montant estimatif":'Voraussichtlichen Betrag anzeigen',
+ "Précisions complémentaires":'Weitere Angaben',
+ "🔥 Envoyer ma demande par email":'🔥 Anfrage per E-Mail senden',
+ "Votre ville":'Ihre Stadt',
+ "Votre nom et prénom":'Ihr Vor- und Nachname',
+ "Votre numéro":'Ihre Telefonnummer',
+ "Numéro, rue, complément d'adresse":'Hausnummer, Straße, Adresszusatz',
+ "vous@exemple.fr":'sie@beispiel.de',
+ "Accès, indications utiles pour la livraison, besoin particulier…":'Zufahrt, Hinweise zur Lieferung oder besondere Wünsche …',
+ "Bois de chauffage très sec.":'Sehr trockenes Brennholz.',
+ "Chêne • Frêne • Hêtre • Charme":'Eiche • Esche • Buche • Hainbuche',
+ "© 2026 Boiseo — Tous droits réservés.":'© 2026 Boiseo – Alle Rechte vorbehalten.',
+ "Boiseo - Vente de bois de chauffage en France et en Allemagne.":'Boiseo – Brennholzverkauf in Frankreich und Deutschland.',
+ "🔥 BOIS DE CHAUFFAGE":'🔥 BRENNHOLZ',
+ "France":'Frankreich',
+ "Allemagne":'Deutschland',
+ "Chêne":'Eiche',
+ "Frêne":'Esche',
+ "Hêtre":'Buche',
+ "Charme":'Hainbuche',
+ "1 stère":'1 Ster',
+ "2 stères":'2 Ster',
+ "3 stères":'3 Ster',
+ "5 stères":'5 Ster',
+ "10 stères":'10 Ster',
+ "20 stères":'20 Ster',
+ "30 stères":'30 Ster',
+ "40 stères":'40 Ster',
+ "60 stères":'60 Ster',
+ "Mélange — chêne, frêne, hêtre, charme":'Mischung – Eiche, Esche, Buche, Hainbuche',
+ "Votre chauffage, notre priorité.":'Ihre Wärme ist unsere Priorität.',
+ "Bienvenue chez":'Willkommen bei',
+ "Présentation":'Über uns',
+ "Utilité":'Verwendung',
+ "Conseils":'Ratgeber',
+ "Livraison":'Lieferung',
+ "FAQ":'FAQ',
+ "Contact":'Kontakt',
+ "Service":'Service',
+ "Comment se passe la livraison ?":'Wie läuft die Lieferung ab?',
+ "Posez votre question…":'Stellen Sie Ihre Frage …',
+ "Envoyer la question":'Frage senden',
+ 'Demander un devis':'Angebot anfordern',
+ '🔥 Bois très sec':'🔥 Sehr trockenes Holz',
+ '🌳 4 essences':'🌳 4 Holzarten',
+ '🚚 Livraison':'🚚 Lieferung',
+ 'Longueurs disponibles':'Verfügbare Längen',
+ 'Stères disponibles':'Verfügbare Ster',
+ '4 essences':'4 Holzarten',
+ 'Chêne, frêne, hêtre, charme':'Eiche, Esche, Buche, Hainbuche',
+ 'Mélange chêne, frêne, hêtre et charme':'Mischung aus Eiche, Esche, Buche und Hainbuche',
+ 'Longueurs 33 cm et 50 cm':'Längen 33 cm und 50 cm',
+ 'Volumes de 1 à 60 stères':'Mengen von 1 bis 60 Ster',
+ 'Une énergie traditionnelle\npour accompagner vos hivers.':'Eine traditionelle Wärmequelle für Ihre Winter.',
+ 'Indiquez votre adresse,\nvotre code postal et votre\nquantité de stères.':'Geben Sie Ihre Adresse, Postleitzahl und die gewünschte Stermenge an.',
+ 'Assistant Boiseo':'Boiseo-Assistent',
+ 'mieux vaut prévoir votre approvisionnement suffisamment tôt afin de disposer de votre bois au moment où vous en avez besoin.':'Planen Sie Ihre Bestellung frühzeitig, damit Ihr Brennholz rechtzeitig verfügbar ist.',
+ 'Préparez votre demande de livraison.':'Bereiten Sie Ihre Lieferanfrage vor.',
+ '33 cm ou 50 cm':'33 cm oder 50 cm',
+ 'Tarif calculé selon le volume choisi':'Preis abhängig von der gewählten Menge',
+ '33 cm • 50 cm':'33 cm • 50 cm',
+ '© 2026 Boiseo —\nTous droits réservés.':'© 2026 Boiseo – Alle Rechte vorbehalten.',
+ 'Boiseo - Vente de bois de chauffage\nen France et en Allemagne.':'Boiseo – Brennholzverkauf in Frankreich und Deutschland.',
+ });
+ const originalNodes=[];
+ const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+ let n;
+ while(n=walker.nextNode()){if(n.nodeValue.trim()) originalNodes.push({node:n,fr:n.nodeValue});}
+ const originalAttrs=[];
+ document.querySelectorAll('[placeholder],[aria-label],[title],[alt],[name]').forEach(el=>{
+  ['placeholder','aria-label','title','alt','name'].forEach(a=>{if(el.hasAttribute(a))originalAttrs.push({el,a,fr:el.getAttribute(a)});});
+ });
+ const country=document.getElementById('deliveryCountry');
+ const lang=document.getElementById('languageSelect');
+ function setLanguage(code){
+  const de=code==='de';
+  document.documentElement.lang=code;
+  const ogLocale=document.querySelector('meta[property="og:locale"]');
+  if(ogLocale) ogLocale.setAttribute('content',de?'de_DE':'fr_FR');
+  originalNodes.forEach(x=>{
+   const key=x.fr.trim();
+   if(de && translations[key]) x.node.nodeValue=x.fr.replace(key,translations[key]);
+   else x.node.nodeValue=x.fr;
+  });
+  originalAttrs.forEach(x=>x.el.setAttribute(x.a,de?(translations[x.fr]||x.fr):x.fr));
+  if(country){
+   const selected=country.value || 'France';
+   country.options[0].value='France'; country.options[1].value='Allemagne';
+   country.options[0].text=de?'Frankreich':'France';
+   country.options[1].text=de?'Deutschland':'Allemagne';
+   country.value=selected;
+  }
+  const meta={
+   fr:{title:'Boiseo | Bois de chauffage très sec',description:'Boiseo propose du bois de chauffage très sec, chêne, frêne, hêtre et charme, en bûches de 33 ou 50 cm. Demandez votre devis et votre livraison en France ou en Allemagne.',keywords:'Boiseo, bois de chauffage, bois sec, stère de bois, chêne, hêtre, charme, frêne, bûches 33 cm, bûches 50 cm, livraison bois de chauffage, France, Allemagne',ogtitle:'Boiseo – Bois de chauffage très sec',ogdesc:'Bois de chauffage sec : chêne, frêne, hêtre et charme, bûches de 33 ou 50 cm, de 1 à 60 stères, conseils et livraison en France et en Allemagne.'},
+   de:{title:'Boiseo | Sehr trockenes Brennholz',description:'Boiseo bietet sehr trockenes Brennholz aus Eiche, Esche, Buche und Hainbuche in 33- oder 50-cm-Scheiten. Fordern Sie ein Angebot und eine Lieferung nach Frankreich oder Deutschland an.',keywords:'Boiseo, Brennholz, trockenes Holz, Ster, Eiche, Buche, Hainbuche, Esche, 33 cm Scheite, 50 cm Scheite, Brennholzlieferung, Frankreich, Deutschland',ogtitle:'Boiseo – Sehr trockenes Brennholz',ogdesc:'Trockenes Brennholz aus Eiche, Esche, Buche und Hainbuche, 33- oder 50-cm-Scheite, 1 bis 60 Ster, Beratung und Lieferung nach Frankreich und Deutschland.'}
+  }[code];
+  document.title=meta.title;
+  const setMeta=(selector,value)=>{const el=document.querySelector(selector);if(el)el.setAttribute('content',value)};
+  setMeta('meta[name="description"]',meta.description);setMeta('meta[name="keywords"]',meta.keywords);setMeta('meta[property="og:title"]',meta.ogtitle);setMeta('meta[property="og:description"]',meta.ogdesc);
+  setMeta('meta[name="twitter:title"]',meta.ogtitle);setMeta('meta[name="twitter:description"]',meta.ogdesc);
+  const canonical=document.querySelector('link[rel="canonical"]');
+  if(canonical)canonical.href=code==='de'?'https://www.boiseo.fr/?lang=de':'https://www.boiseo.fr/';
+  if(lang)lang.value=code;
+  const mailLink=document.querySelector('.boiseo-floating-action--mail');
+  if(mailLink){mailLink.href=de?'mailto:contact@boiseo.online?subject=Boiseo%20Lieferanfrage&body=Guten%20Tag%20Boiseo%2C%0A%0AIch%20m%C3%B6chte%20eine%20Lieferanfrage%20stellen.%0A%0AVor-%20und%20Nachname%3A%0AStadt%3A%0APostleitzahl%3A%0ALieferadresse%3A%0ATelefon%3A%0AE-Mail%3A%0A%0AVielen%20Dank.':'mailto:contact@boiseo.online?subject=Demande%20de%20livraison%20Boiseo&body=Bonjour%20Boiseo%2C%0A%0AJe%20souhaite%20faire%20une%20demande%20de%20livraison.%0A%0ANom%20et%20pr%C3%A9nom%20%3A%0AVille%20%3A%0ACode%20postal%20%3A%0AAdresse%20%3A%0AT%C3%A9l%C3%A9phone%20%3A%0AMail%20%3A%0A%0AMerci.';}
+  const hidden=document.getElementById('orderPriceHidden'); if(hidden) hidden.value=hidden.value;
+  window.localStorage.setItem('boiseo-language',code);
+ }
+ if(lang){
+  let saved='fr'; try{saved=localStorage.getItem('boiseo-language')||'fr'}catch(e){}
+  lang.value=saved; setLanguage(saved);
+  lang.addEventListener('change',()=>setLanguage(lang.value));
+ }
+})();
+</script>
+</body>
+</html>
